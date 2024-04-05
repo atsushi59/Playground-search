@@ -55,4 +55,4 @@ MVPリリース時に実装したいもの
 ・Google Maps API    
 
 ■画面遷移図  
-https://www.figma.com/file/omh7CygZv30NrX91pBU0Fy/portfolio?type=whiteboard&node-id=0-1&t=vCnPCd8q4L0IWpLl-0
+https://www.figma.com/file/Zmwg6NA9cS3dE9wXsNsOQw/%E7%84%A1%E9%A1%8C?type=design&node-id=0-1&mode=design&t=vJeFECaBN8PdZ2rY-0
