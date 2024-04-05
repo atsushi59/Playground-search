@@ -58,4 +58,4 @@ MVPリリース時に実装したいもの
 https://www.figma.com/file/Zmwg6NA9cS3dE9wXsNsOQw/%E7%84%A1%E9%A1%8C?type=design&node-id=0-1&mode=design&t=vJeFECaBN8PdZ2rY-0  
 
 ■ER図
-https://i.gyazo.com/5bad083d7c91992babe7f8847868d6df.png
+https://i.gyazo.com/d93f5835bad812174947337045217922.png
