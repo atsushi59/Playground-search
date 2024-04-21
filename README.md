@@ -55,10 +55,10 @@ MVPリリース時に実装したいもの
 ■機能の実装方針  
 ・Google Geolocation API  
 ・Google Geocoding API  
-・Google Maps JavaScript API
+・Google Maps JavaScript API  
 ・Google Places API  
 ・Google Directions API   
-・GPT-4 API 
+・GPT-4 API  
 ・NAVITIME Route(totalnavi)  
 
 ■画面遷移図  
