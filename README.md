@@ -12,16 +12,17 @@
 
 ■サービスの利用イメージ  
 ・スマートフォンからの利用を想定しています  
-・Geolocation APIを使用し位置情報を取得します  
-・(1).ユーザーは遊び場に行く交通手段を選択します（車、電車）  
-・(2).所要時間は30分刻みで30分から2時間まで選択できます  
-・(3).子供の年齢を選択します  
-・(4).外遊び場、室内遊び場、テーマパーク、体験施設の中から選択します  
-・上記の選択肢から現在の位置情報を元に『公共施設のみが対象で(1)で(2)以内で(3)歳の子供が(4)できる場所を下記条件を元に10件表示してください　条件、立ち入りの許可が必要ない、公式のHPが存在する場所のみ』とGPT-4 APIにリクエストします  
-・リクエスト結果からGoogle Maps APIで(2)の時間以内かつ正しく存在する場所か確認し条件を満たした場所のみ場所の画像、営業時間、公式HPを表示します  
-・候補から行く場所を決めたら、Google Mapsで行く手段を提示します（車の場合はナビ、電車の場合は乗り換え案内）  
-・ログイン後に行った場所の履歴を表示します  
-・ログイン後に行った場所について投稿できる掲示板を提供します  
+・Google Geolocation API、Google Geocoding APIで位置情報(住所)を取得します  
+・(1).ユーザーは遊び場に行く交通手段を選択します（車、公共交通機関）  
+・(2).所要時間を30分から2時間まで、30分刻みで選択できます   
+・(3).子供の年齢を選択します(幼児、園児、小学生)
+・(4).外遊び場、室内遊び場、レジャー施設の中から選択します  
+・上記の選択肢を元に『現在地から(1)で(2)以内で(3)の子供が対象の(4)できる場所を正式名称で10件提示してください』とGPT-4 APIにリクエストします  
+・リクエスト結果からGoogle Directions API、NAVITIME Route(totalnavi)APIで(2)の時間以内か確認します  
+・正しく存在する場所か確認し条件を満たした場所のみGoogle Places APIで場所の画像、営業時間、公式HP、所要時間を表示します  
+・候補から行く場所を決めたらgoogle mapにアクセスし行く手段を提示します（車の場合はナビ、電車の場合は乗り換え案内）  
+・ユーザーはログイン後に行った場所の履歴を表示します  
+・ユーザーはログイン後に行った場所について投稿できる掲示板を提供します  
 
 ■このサービスを利用することで得られること  
 ・子供を遊ばせる場所を調べ、交通手段を調べる手間を減らせます  
@@ -39,8 +40,10 @@
 
 ■機能候補  
 MVPリリース時に実装したいもの  
-・Geolocation APIを使用して位置情報を取得  
+・Geolocation API、Geocoding APIを使用して位置情報（住所）を取得  
 ・GPT-4 APIを使用して選択ボタンからの検索結果を表示  
+・Directions API、NAVITIME Route(totalnavi)APIを使用しユーザーが選択した時間内に行ける場所のみ表示する   
+・Places APIを用いて名前、住所、営業時間、公式HPの表示且つDirections API、NAVITIME Route(totalnavi)APIから取得した所要時間の表示  
 ・検索結果からGoogle Mapsに移動し、ナビゲーションまたは乗換案内ページを表示する  
 
 本リリース時に実装したいもの  
@@ -50,9 +53,13 @@ MVPリリース時に実装したいもの
 ・掲示板の作成(投稿、いいね、コメント、検索)  
 
 ■機能の実装方針  
-・Geolocation API  
-・GPT-4 API  
-・Google Maps API    
+・Google Geolocation API  
+・Google Geocoding API  
+・Google Maps JavaScript API
+・Google Places API  
+・Google Directions API   
+・GPT-4 API 
+・NAVITIME Route(totalnavi)  
 
 ■画面遷移図  
 https://www.figma.com/file/Zmwg6NA9cS3dE9wXsNsOQw/%E7%84%A1%E9%A1%8C?type=design&node-id=0-1&mode=design&t=vJeFECaBN8PdZ2rY-0  
