@@ -65,4 +65,4 @@ MVPリリース時に実装したいもの
 https://www.figma.com/file/Zmwg6NA9cS3dE9wXsNsOQw/%E7%84%A1%E9%A1%8C?type=design&node-id=0-1&mode=design&t=vJeFECaBN8PdZ2rY-0  
 
 ■ER図
-https://i.gyazo.com/416cd5708bf19b2c619cad495e4f5ef2.png
+https://www.mermaidchart.com/app/projects/4feb60d4-9808-43f5-8ac2-939bd5fd67f8/diagrams/77c940ac-9313-49a4-a606-6b14ac6496cf/version/v0.1/edit
