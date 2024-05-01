@@ -59,6 +59,7 @@ group :development, :test do
   gem "rubocop-rails"
   gem "simplecov", require: false
   gem "webmock"
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -80,4 +81,5 @@ end
 
 group :production do
   gem 'aws-sdk-s3', require: false
+  gem 'fog-aws'
 end  
