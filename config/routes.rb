@@ -6,12 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "static_pages#index"
-  resources :searches, only: [:index] do
-    collection do
-      get 'search'
-    end
-  end
-
-  post "search", to: "search#index"
+  post "search", to: "searches#search"
+  get "index", to: "searches#index"
 
 end
