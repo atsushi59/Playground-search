@@ -1,2 +1,29 @@
-<h1>Searches#index</h1>
-<p>Find me in app/views/searches/index.html.erb</p>
+  <% if @places_details.any? %>
+    <% unique_places = @places_details.uniq { |place| place['name'] } %>
+    <div>
+      <h2>検索結果:</h2>
+      <% @places_details.each do |place_detail| %>
+        <% if place_detail['website'].present? || (place_detail['opening_hours'] && place_detail['opening_hours']['weekday_text'].present?) %>
+          <div>
+            <h3><%= place_detail['name'] %></h3>
+            <p><%= place_detail['formatted_address'] %></p>
+
+            <% if place_detail['opening_hours'] && place_detail['opening_hours']['weekday_text'] %>
+              <p>本日の営業時間: <%= place_detail['opening_hours']['weekday_text'][Time.zone.today.wday.zero? ? 6 : Time.zone.today.wday - 1] %></p>
+              <p>土曜の営業時間: <%= place_detail['opening_hours']['weekday_text'][5] %></p>
+              <p>日曜の営業時間: <%= place_detail['opening_hours']['weekday_text'][6] %></p>
+            <% else %>
+              <p>営業時間の情報はありません。</p>
+            <% end %>
+
+            <p>ホームページ: <%= link_to place_detail['website'], place_detail['website'] %></p>
+            <% if place_detail['photo_url'] %>
+              <img src="<%= place_detail['photo_url'] %>" alt="<%= place_detail['name'] %>の写真">
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>結果が見つかりませんでした。</p>
+<% end %>

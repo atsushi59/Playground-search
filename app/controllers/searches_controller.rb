@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+  before_action :set_google_places_service
+  
   def search
     api_key = ENV['OPENAI_API_KEY']
     chatgpt_service = ChatgptService.new(api_key)
@@ -28,14 +30,12 @@ class SearchesController < ApplicationController
       redirect_to index_path
     else
       @error_message = "Error: #{response.parsed_response['error']['message']}"
-      puts error_message
     end
   end
 
   def index
     queries = session[:query].to_s.split("\n").map { |q| q.split('. ').last.strip }
     @places_details = []
-  
     queries.each do |query|
       response = @google_places_service.search_places(query)
       if response["candidates"].any?
@@ -52,5 +52,10 @@ class SearchesController < ApplicationController
         @places_details.push({ "name" => query, "error" => "No results found" })
       end
     end
+  end
+
+  private
+  def set_google_places_service
+    @google_places_service = GooglePlacesService.new(ENV['GOOGLE_API_KEY'])
   end
 end
