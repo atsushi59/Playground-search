@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
   post "search", to: "search#index"
-  
+
 end
