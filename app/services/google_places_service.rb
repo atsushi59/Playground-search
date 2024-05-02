@@ -8,4 +8,40 @@ class GooglePlacesService
   def initialize(api_key)
     @api_key = api_key
   end
-end  
+
+  def search_places(query)
+    options = {
+		  query: {  
+        input: query,
+        inputtype: 'textquery',
+        fields: 'place_id,name,formatted_address,business_status',
+        key: @api_key,
+        language: 'ja'
+      }
+    }
+    self.class.get('/findplacefromtext/json', options)
+  end
+
+  def get_place_details(place_id, fields = 'name,formatted_address,opening_hours,website,photo') #表示したい項目をパラメーターに記載
+    options = {
+      query: {
+        place_id: place_id,
+        fields: fields,
+        key: @api_key,
+        language: 'ja' 
+      }
+    }
+    self.class.get('/details/json', options)
+  end
+
+  def get_photo(photo_reference, max_width = 400)
+    options = {
+      query: {
+        photoreference: photo_reference,
+        maxwidth: max_width,
+        key: @api_key
+      }
+    }
+    self.class.get('/photo', options).request.last_uri.to_s
+  end
+end 
