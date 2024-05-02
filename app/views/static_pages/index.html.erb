@@ -1,5 +1,39 @@
 <h1 class="bg-orange-400">StaticPages#view</h1>
 
+<div style="item: center; min-height: 50vh;">
+  <%= form_with url: search_path, method: :post, id: 'location_form', local: true do |form| %>
+    <div class="col-md-10 col-lg-8 w-1/2 mx-auto" style="font-size: 1rem; padding: 40px;"><br>
+      <div class="mb-4">
+        <%= form.label :selected_transport, '交通手段', class: "block text-sm font-medium text-gray-700" %>
+        <%= form.select :selected_transport, [['車', '車'], ['公共交通機関', '公共交通機関']], {}, {class: "input input-bordered input-info w-full"} %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :selected_time, '所要時間' ,class: "block text-sm font-medium text-gray-700" %>
+        <%= form.select :selected_time, [['30分', '45分'], ['1時間', '75分'], ['1時間30分', '105分'], ['2時間', '135分']], {}, {class: "input input-bordered input-info w-full"} %>
+        <%# 前に書かれているのがユーザーが選択する時間で後ろに書かれているのがcontrollerに渡す時間 %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :selected_age, '子供の年齢', class: "block text-sm font-medium text-gray-700" %>
+        <%= form.select :selected_age, [['幼児', '幼児'], ['園児', '園児'], ['小学生', '小学生']], {}, {class: "input input-bordered input-info w-full"} %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :selected_activity, '遊戯施設', class: "block text-sm font-medium text-gray-700" %>
+        <%= form.select :selected_activity, [['公園', '公園'], ['室内遊び場', '室内遊び場'], ['レジャー施設', 'レジャー施設']], {}, {class: "input input-bordered input-info w-full"} %>
+      </div>
+
+      <div>
+        <%= form.hidden_field :address, id: 'hidden_address' %>
+        <%# 隠しフィールド 画面上では表示されないが検索ボタンを押したタイミングでhidden_addressを取得（現在地） %>
+        <%= form.submit '検索', class: "btn btn-primary w-full" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
 <script>
     function showPosition(position) {
         var lat = position.coords.latitude;
@@ -8,18 +42,46 @@
 
         var geocoder = new google.maps.Geocoder;
         var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
-        //緯度経度の値をオブジェクトに格納
 
         geocoder.geocode({'location': latlng}, function(results, status) {
             if (status === 'OK' && results[0]) {
                 var fullAddress = results[0].formatted_address;
                 console.log(fullAddress);
-                //住所が存在した場合完全な住所情報を取得
 
                 var address = fullAddress.replace(/日本、〒\d{3}-\d{4} /, '');
                 console.log(address);
                 // 住所から国名と郵便番号を削除
-            }    
+
+                
+                document.getElementById('hidden_address').value = address;
+                // 住所を隠しフィールドに設定 上記のフォーム内
+                
+                document.getElementById('location_form').submit();
+            } else {
+                window.alert('No results found or Geocoder failed due to: ' + status);
+            }
         });
     }
+
+    document.getElementById('location_form').addEventListener('submit', function(event) {
+        if (!document.getElementById('hidden_address').value) {
+            event.preventDefault(); 
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                console.log("ジオロケーションは利用できません");
+            }
+        }
+    });
+
+     document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('location_form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var modal = document.getElementById('my_modal_2');
+            modal.showModal();
+            form.submit();
+        });
+    });
+
 </script>
