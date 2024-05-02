@@ -25,8 +25,7 @@ class SearchesController < ApplicationController
       places = message_content.split("\n").select { |line| line.match(/^\d+\./) }
       @answer = places.join("\n")
       session[:query] = @answer
-      #redirect_to index_path
-      puts "Answer: #{answer}"
+      redirect_to index_path
     else
       @error_message = "Error: #{response.parsed_response['error']['message']}"
       puts error_message
@@ -34,5 +33,24 @@ class SearchesController < ApplicationController
   end
 
   def index
+    queries = session[:query].to_s.split("\n").map { |q| q.split('. ').last.strip }
+    @places_details = []
+  
+    queries.each do |query|
+      response = @google_places_service.search_places(query)
+      if response["candidates"].any?
+        first_result = response["candidates"].first
+        place_id = first_result["place_id"]
+        details_response = @google_places_service.get_place_details(place_id)
+        place_detail = details_response["result"]
+  
+        opening_hours = place_detail['opening_hours'] ? place_detail['opening_hours']['weekday_text'][Time.zone.today.wday.zero? ? 6 : Time.zone.today.wday - 1] : "営業時間の情報はありません。"
+        photo_reference = place_detail['photos'] ? @google_places_service.get_photo(place_detail['photos'].first['photo_reference']) : nil
+
+        @places_details.push(place_detail.merge("today_opening_hours" => opening_hours, "photo_url" => photo_reference))
+      else
+        @places_details.push({ "name" => query, "error" => "No results found" })
+      end
+    end
   end
 end
