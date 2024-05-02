@@ -1,7 +1,7 @@
 <h1 class="bg-orange-400">StaticPages#view</h1>
 
 <div style="item: center; min-height: 50vh;">
-  <%= form_with url: search_path, method: :post, id: 'location_form', local: true do |form| %>
+  <%= form_with url: search_path, method: :post, id: 'location_form' do |form| %>
     <div class="col-md-10 col-lg-8 w-1/2 mx-auto" style="font-size: 1rem; padding: 40px;"><br>
       <div class="mb-4">
         <%= form.label :selected_transport, '交通手段', class: "block text-sm font-medium text-gray-700" %>
@@ -33,6 +33,15 @@
   <% end %>
 </div>
 
+<dialog id="my_modal_2" class="modal">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">検索中です</h3>
+        <p class="py-4">しばらくお待ちください。</p>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button type="button" onclick="document.getElementById('my_modal_2').close()">閉じる</button>
+    </form>
+</dialog>
 
 <script>
     function showPosition(position) {
@@ -74,7 +83,7 @@
         }
     });
 
-     document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         var form = document.getElementById('location_form');
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -83,5 +92,4 @@
             form.submit();
         });
     });
-
 </script>

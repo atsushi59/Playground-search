@@ -16,6 +16,18 @@
               <p>営業時間の情報はありません。</p>
             <% end %>
 
+            <p>所要時間: 約
+              <% total_minutes = place_detail['travel_time_text'].to_i %>
+              <% hours = total_minutes / 60 %>
+              <!-- total_minutes(90) 90/60 = 1 -->
+              <% minutes = total_minutes % 60 %>
+              <!-- 90%60 = 30  -->
+              <% if hours > 0 %>
+                <%= hours %>時間<!-- hours = 1 なので1時間 -->
+              <% end %>
+                <%= minutes %>分<!-- minutes = 30 なので30分 -->
+            </p>
+
             <p>ホームページ: <%= link_to place_detail['website'], place_detail['website'] %></p>
             <% if place_detail['photo_url'] %>
               <img src="<%= place_detail['photo_url'] %>" alt="<%= place_detail['name'] %>の写真">
