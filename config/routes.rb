@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   root "static_pages#index"
   post "search", to: "searches#search"
   get "index", to: "searches#index"
-
+  get "/terms_of_service", to: "static_pages#terms_of_service"
 end
