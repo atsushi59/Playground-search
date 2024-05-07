@@ -1,0 +1,49 @@
+# RuboCop configuration
+#
+# The behavior of RuboCop can be controlled via this .rubocop.yml configuration file.
+# It makes it possible to enable/disable certain cops (checks) and to alter their behavior.
+# The configuration file can be placed either in your home directory or in some project directory.
+# RuboCop will start looking for the configuration file in the directory where the inspected
+# file is and continue its way up to the root directory.
+#
+# For more details on configuration, see: https://docs.rubocop.org/rubocop/configuration
+
+# Exclude methods in block length for RSpec files
+Metrics/BlockLength:
+  Max: 150
+  ExcludedMethods:
+    - 'describe'
+    - 'context'
+    - 'feature'
+    - 'specify'
+  Exclude:
+    - 'spec/**/*'
+
+# Disable documentation requirement
+Style/Documentation:
+  Enabled: false
+
+# Complexity Metrics
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+# Method Length configuration
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'db/migrate/*'
+
+# ABC size for methods, exclude migrations
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*'
+
+# Line Length configuration
+Layout/LineLength:
+  Max: 200
+  Exclude:
+    - 'bin/bundle'
+    - 'spec/concerns/**/*'
