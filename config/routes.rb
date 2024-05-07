@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -5,10 +7,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   # Defines the root path route ("/")
   # root "posts#index"
-  root "static_pages#index"
-  post "search", to: "searches#search"
-  get "index", to: "searches#index"
-  get "/terms_of_service", to: "static_pages#terms_of_service"
-  get "/privacy_policy", to: "static_pages#privacy_policy"
-
+  root 'static_pages#index'
+  post 'search', to: 'searches#search'
+  get 'index', to: 'searches#index'
+  get '/terms_of_service', to: 'static_pages#terms_of_service'
+  get '/privacy_policy', to: 'static_pages#privacy_policy'
 end

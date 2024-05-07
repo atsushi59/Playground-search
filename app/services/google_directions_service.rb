@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'httparty'
 
 class GoogleDirectionsService
@@ -11,13 +13,13 @@ class GoogleDirectionsService
   def get_directions(origin, destination, departure_time)
     options = {
       query: {
-        origin: origin, 
-        destination: destination, 
-        mode: 'driving', 
-        departure_time: departure_time,
+        origin:,
+        destination:,
+        mode: 'driving',
+        departure_time:,
         key: @api_key
       }
     }
     self.class.get('/json', options)
-  end 
+  end
 end
