@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 module SearchHandling
   extend ActiveSupport::Concern
