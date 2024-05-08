@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class SearchesController < ApplicationController
   include SearchHandling
@@ -22,6 +21,7 @@ class SearchesController < ApplicationController
   def index
     queries = session[:query].to_s.split("\n").map { |q| q.split('. ').last.strip }
     process_queries(queries)
+    @travel_mode = session[:selected_transport] == '公共交通機関' ? 'transit' : 'driving'
   end
 
   def calculate_travel_time(place_detail)
