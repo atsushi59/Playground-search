@@ -1,15 +1,13 @@
-<header class="w-full navbar bg-blue-300">
+<header class="fixed top-0 left-0 right-0 w-full navbar bg-blue-300 z-50">
     <div class="flex justify-between items-center w-full">
-      <div class="flex-1 px-2 lg:flex-none">
-        <%= link_to root_path do %>
-          <%= image_tag('favicon.ico', class: "w-12 h-12") %>
-        <% end %>
-      </div> 
-        <ul>
-            <%= link_to '新規作成', '#', class: "hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800" %>
-        </ul>
-        <ul>
-            <%= link_to 'ログイン', '#', class: "hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800" %>
+        <div class="flex-1 px-2 lg:flex-none">
+            <%= link_to root_path do %>
+                <%= image_tag('favicon.ico', class: "w-12 h-12") %>
+            <% end %>
+        </div>
+        <ul class="flex">
+            <%= link_to '新規作成', '#', class: "hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
+            <%= link_to 'ログイン', '#', class: "hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
         </ul>
     </div>  
 </header>

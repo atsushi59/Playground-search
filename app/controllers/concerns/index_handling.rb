@@ -59,8 +59,6 @@ module IndexHandling
     if travel_time_minutes && travel_time_minutes <= session[:selected_time].to_i
       @places_details.push(place_detail.merge('today_opening_hours' => opening_hours,
                                               'photo_url' => photo_reference))
-    else
-      @places_details.push({ 'name' => place_detail['name'], 'error' => 'No results found' })
     end
   end
 end
