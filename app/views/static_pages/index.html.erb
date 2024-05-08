@@ -9,7 +9,6 @@
       <div class="mb-4">
         <%= form.label :selected_time, '所要時間' ,class: "block text-sm font-medium text-gray-700" %>
         <%= form.select :selected_time, [['30分', '45分'], ['1時間', '75分'], ['1時間30分', '105分'], ['2時間', '135分']], {}, {class: "input input-bordered input-info w-full"} %>
-        <%# 前に書かれているのがユーザーが選択する時間で後ろに書かれているのがcontrollerに渡す時間 %>
       </div>
 
       <div class="mb-4">
@@ -22,10 +21,9 @@
         <%= form.select :selected_activity, [['公園', '公園'], ['室内遊び場', '室内遊び場'], ['レジャー施設', 'レジャー施設']], {}, {class: "input input-bordered input-info w-full"} %>
       </div>
 
-      <div>
+      <div class="text-center">
         <%= form.hidden_field :address, id: 'hidden_address' %>
-        <%# 隠しフィールド 画面上では表示されないが検索ボタンを押したタイミングでhidden_addressを取得（現在地） %>
-        <%= form.submit '検索', class: "btn btn-primary w-full" %>
+        <%= form.submit '検索', class: "shadow-lg bg-sky-500 shadow-sky-500/50 text-white rounded px-20 py-2 my-2"%>
       </div>
     </div>
   <% end %>
@@ -45,7 +43,6 @@
     function showPosition(position) {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
-        //緯度経度の取得
 
         var geocoder = new google.maps.Geocoder;
         var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
@@ -57,11 +54,9 @@
 
                 var address = fullAddress.replace(/日本、〒\d{3}-\d{4} /, '');
                 console.log(address);
-                // 住所から国名と郵便番号を削除
 
                 
                 document.getElementById('hidden_address').value = address;
-                // 住所を隠しフィールドに設定 上記のフォーム内
                 
                 document.getElementById('location_form').submit();
             } else {
