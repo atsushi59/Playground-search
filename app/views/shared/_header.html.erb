@@ -1,13 +1,11 @@
-<header class="fixed top-0 left-0 right-0 w-full navbar bg-blue-300 z-50">
+<header class="font-mono w-full navbar bg-sky-50 z-50">
     <div class="flex justify-between items-center w-full">
         <div class="flex-1 px-2 lg:flex-none">
-            <%= link_to root_path do %>
-                <%= image_tag('favicon.ico', class: "w-12 h-12") %>
-            <% end %>
+            <%= link_to 'こどもとどこいく？', root_path, class: "font-sans text-xl font-bold text-lime-500 hover:bg-base-100 focus:ring-4 focus:ring-gray-300 rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
         </div>
         <ul class="flex">
-            <%= link_to '新規作成', '#', class: "hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
-            <%= link_to 'ログイン', '#', class: "hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
+            <%= link_to '新規作成', '#', class: "text-sky-800 hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
+            <%= link_to 'ログイン', '#', class: "text-sky-800 hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
         </ul>
     </div>  
 </header>

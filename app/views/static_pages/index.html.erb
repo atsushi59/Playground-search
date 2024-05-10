@@ -1,42 +1,118 @@
-<div style="item: center; min-height: 50vh;">
-  <%= form_with url: search_path, method: :post, id: 'location_form' do |form| %>
-    <div class="col-md-10 col-lg-8 w-1/2 mx-auto" style="font-size: 1rem; padding: 40px;"><br>
-      <div class="mb-4">
-        <%= form.label :selected_transport, '交通手段', class: "block text-sm font-medium text-gray-700" %>
-        <%= form.select :selected_transport, [['車', '車'], ['公共交通機関', '公共交通機関']], {}, {class: "input input-bordered input-info w-full"} %>
-      </div>
+<div class="flex justify-center items-center">
+  <%= image_tag 'result.png', class: "h-96 w-96" %>
+</div>
 
-      <div class="mb-4">
-        <%= form.label :selected_time, '所要時間' ,class: "block text-sm font-medium text-gray-700" %>
-        <%= form.select :selected_time, [['30分', '45分'], ['1時間', '75分'], ['1時間30分', '105分'], ['2時間', '135分']], {}, {class: "input input-bordered input-info w-full"} %>
-      </div>
+<p class="text-center font-sans text-7xl font-bold text-lime-500">
+  こどもとどこいく？
+</p>
 
-      <div class="mb-4">
-        <%= form.label :selected_age, '子供の年齢', class: "block text-sm font-medium text-gray-700" %>
-        <%= form.select :selected_age, [['幼児', '幼児'], ['園児', '園児'], ['小学生', '小学生']], {}, {class: "input input-bordered input-info w-full"} %>
-      </div>
+<p class="text-sky-800 text-3xl text-center mt-24">
+  このようなお悩みはありませんか？
+</p>
 
-      <div class="mb-4">
-        <%= form.label :selected_activity, '遊戯施設', class: "block text-sm font-medium text-gray-700" %>
-        <%= form.select :selected_activity, [['公園', '公園'], ['室内遊び場', '室内遊び場'], ['レジャー施設', 'レジャー施設']], {}, {class: "input input-bordered input-info w-full"} %>
-      </div>
+<ul class="text-sky-800 text-2xl text-center list-none space-y-2 mt-8">
+  <li>・明日休みだが子供をどこに遊びに連れて行こう？</li>
+  <li>・いつも同じ場所で遊んでいて飽きてきている</li>
+</ul>
 
-      <div class="text-center">
-        <%= form.hidden_field :address, id: 'hidden_address' %>
-        <%= form.submit '検索', class: "shadow-lg bg-sky-500 shadow-sky-500/50 text-white rounded px-20 py-2 my-2"%>
-      </div>
-    </div>
-  <% end %>
+<p class="text-sky-800 text-3xl text-center mt-12">
+  生成型AIがあなたのお悩みに寄り添います！
+</p>
+
+<div class="flex justify-center mt-16">
+    <button class="flex items-center justify-center px-12 py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal()">
+        ここから始める
+    </button>
+</div>
+
+<div class="w-2/3 border-t-4 border-sky-800 mx-auto mt-20"></div>
+
+<p class="text-sky-800 text-3xl text-center mt-16">＜使い方＞</p>
+
+<div class="items-center shadow-xl rounded-lg bg-white border border-gray-300 w-1/2 mx-auto pt-4 mt-12">
+  <p class="text-sky-800 text-xl text-center mt-4">①交通手段等を選択し検索します</p>
+  <div class="flex justify-center items-center">
+    <%= image_tag 'search.png', class: "h-96 w-96" %>
+  </div>
+</div>
+
+<div class="items-center shadow-xl rounded-lg bg-white border border-gray-300 w-1/2 mx-auto pt-4 mt-12">
+  <p class="text-sky-800 text-xl text-center mt-4 mb-8">②検索結果から行きたい場所を選択しここに行くを押します</p>
+  <div class="flex justify-center items-center">
+    <%= image_tag 'answer.png', class: "h-80 w-80 mb-8" %>
+  </div>
+</div>
+
+<div class="items-center shadow-xl rounded-lg bg-white border border-gray-300 w-1/2 mx-auto pt-4 mt-12">
+  <p class="text-sky-800 text-xl text-center mt-4 mb-8">③自動でルート案内してくれますので行くだけです</p>
+  <div class="flex justify-center items-center">
+    <%= image_tag 'route.png', class: "h-80 w-80 mb-8" %>
+  </div>
+</div>
+
+<div class="flex justify-center mt-16">
+    <button class="flex items-center justify-center px-12 py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal()">
+        ここから始める
+    </button>
+</div>
+
+<div class="w-2/3 border-t-4 border-sky-800 mx-auto mt-20"></div>
+
+<p class="text-sky-800 text-3xl text-center mt-16">＜ログインすると＞</p>
+
+<p class="text-sky-800 text-xl text-center mt-16">本リリース後に下記を追記します</p>
+<br>
+<br>
+<br>
+
+
+<div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex justify-center items-center" style="z-index: 1000;">
+  <div class="bg-white p-6 rounded shadow-lg max-w-xl w-full mx-auto relative">
+    <button onclick="closeModal()" class="absolute top-0 right-0 mt-2 mr-2 text-3xl font-semibold leading-none">&times;</button>
+    <%= form_with url: search_path, method: :post, id: 'location_form' do |form| %>
+      <div class="text-center p-10 text-base">
+        <div class="mb-4">
+          <%= form.label :selected_transport, '交通手段', class: "block text-sm font-medium text-sky-800" %>
+          <%= form.select :selected_transport, [['車', '車'], ['公共交通機関', '公共交通機関']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
+        </div>
+
+        <div class="mb-4">
+          <%= form.label :selected_time, '所要時間' ,class: "block text-sm font-medium text-sky-800" %>
+          <%= form.select :selected_time, [['30分', '45分'], ['1時間', '75分'], ['1時間30分', '105分'], ['2時間', '135分']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
+        </div>
+
+        <div class="mb-4">
+          <%= form.label :selected_age, '子供の年齢', class: "block text-sm font-medium text-sky-800" %>
+          <%= form.select :selected_age, [['3歳以下', '3歳以下'], ['6歳以下', '6歳以下'], ['12歳以下', '12歳以下']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
+        </div>
+
+        <div class="mb-4">
+          <%= form.label :selected_activity, '遊戯施設', class: "block text-sm font-medium text-sky-800" %>
+          <%= form.select :selected_activity, [['公園', '公園'], ['室内遊び場', '室内遊び場'], ['レジャー施設', 'レジャー施設']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
+        </div>
+
+        <div class="text-center"><br>
+          <%= form.hidden_field :address, id: 'hidden_address' %>
+          <%= form.submit '検索', class:"px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" %>
+        </div>
+
+        <p class="text-center text-sky-800 mt-8">＊公共交通機関を選択の場合＊</p>
+        <p class="text-center text-sky-800 mt-2">検索された場所から徒歩込みでルート時間を表示する為</p>
+        <p class="text-center text-sky-800 mt-2">所要時間を長めに設定お願いします</p>
+    <% end %>
+  </div>
 </div>
 
 <dialog id="my_modal_2" class="modal">
-    <div class="modal-box">
-        <h3 class="font-bold text-lg">検索中です</h3>
-        <p class="py-4">しばらくお待ちください。</p>
-    </div>
-    <form method="dialog" class="modal-backdrop">
-        <button type="button" onclick="document.getElementById('my_modal_2').close()">閉じる</button>
-    </form>
+  <div class="modal-box flex flex-col items-center justify-center">
+    <p class="font-bold text-center text-lg">検索中です</p>
+    <p class="text-center py-4">しばらくお待ちください。</p>
+    <span class="loading loading-spinner w-12 h-12 text-info"></span>
+  </div>
+
+  <form method="dialog" class="modal-backdrop">
+    <button type="button" onclick="document.getElementById('my_modal_2').close()">閉じる</button>
+  </form>
 </dialog>
 
 <script>
@@ -85,4 +161,12 @@
             form.submit();
         });
     });
+
+    function openModal() {
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
 </script>
