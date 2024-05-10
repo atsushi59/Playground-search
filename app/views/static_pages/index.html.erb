@@ -73,7 +73,7 @@
 
 
 <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex justify-center items-center" style="z-index: 1000;">
-  <div class="bg-white p-6 rounded shadow-lg max-w-xl w-full mx-auto relative">
+  <<div class="bg-white p-6 rounded shadow-lg mx-auto relative sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl max-h-[90vh] overflow-auto">
     <button onclick="closeModal()" class="absolute top-0 right-0 mt-2 mr-2 text-3xl font-semibold leading-none">&times;</button>
     <%= form_with url: search_path, method: :post, id: 'location_form' do |form| %>
       <div class="text-center p-10 text-base">
