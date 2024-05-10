@@ -6,7 +6,8 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
         <% unique_places.each do |place_detail| %>
           <% if place_detail['error'].nil? && (place_detail['website'].present? || (place_detail['opening_hours'] && place_detail['opening_hours']['weekday_text'])) %>
-              <div class="shadow-xl rounded-lg bg-white p-4 mx-8 border border-gray-200">              <div class="flex flex-col items-center justify-center w-full">
+            <div class="shadow-xl rounded-lg bg-white p-4 mx-8 pt-4 border border-gray-200 mb-8">
+              <div class="flex flex-col items-center justify-center w-full">
                 <p class="text-center text-gl md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800"><%= place_detail['name'] %></p>
                 <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">住所: <%= place_detail['formatted_address'] %></p>
                 <% if place_detail['opening_hours'] && place_detail['opening_hours']['weekday_text'] %>
@@ -51,6 +52,9 @@
     <p class="text-center">結果が見つかりませんでした。</p>
   <% end %>
   <div class="mt-10 text-center">
-    <%= link_to 'TOPに戻る', root_path, class:"px-4 md:px-16 py-2 md:py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" %><br>
-  </div><br><br>
+    <%= link_to 'TOPに戻る', root_path, class:"px-4 md:px-16 py-2 md:py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" %>
+    <br>
+    <br>
+    <br>
+  </div>
 </div>

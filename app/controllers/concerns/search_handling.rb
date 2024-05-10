@@ -9,11 +9,12 @@ module SearchHandling
   end
 
   def generate_user_input
-    base = "#{params[:address]}から#{params[:selected_transport]}で"
-    condition = "#{params[:selected_time]}以内で#{params[:selected_age]}"
-    activity = "の子供が対象の#{params[:selected_activity]}"
-    request = 'できる場所を正式名称で2件提示してください'
-    [base, condition, activity, request].join
+    root = "足立区西竹の塚から#{params[:selected_transport]}で"
+    time = "正確に#{params[:selected_time]}で到着する"
+    age = "#{params[:selected_age]}の子供が遊べる"
+    activity = "#{params[:selected_activity]}を場所の正式名称のみ8件回答してください。"
+    request = "なるべく過去に回答していない場所を提示してください。"
+    [root, time, age, activity, request].join
   end
 
   def generate_messages(user_input)
