@@ -9,7 +9,7 @@ module SearchHandling
   end
 
   def generate_user_input
-    root = "足立区西竹の塚から#{params[:selected_transport]}で"
+    root = "#{params[:address]}から#{params[:selected_transport]}で"
     time = "正確に#{params[:selected_time]}で到着する"
     age = "#{params[:selected_age]}の子供が遊べる"
     activity = "#{params[:selected_activity]}を場所の正式名称のみ8件回答してください。"
@@ -42,9 +42,5 @@ module SearchHandling
     places = message_content.split("\n").select { |line| line.match(/^\d+\./) }
     @answer = places.join("\n")
     session[:query] = @answer
-  end
-
-  def process_error_response(response)
-    @error_message = "Error: #{response.parsed_response['error']['message']}"
   end
 end

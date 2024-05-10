@@ -9,8 +9,6 @@ module IndexHandling
       response = @google_places_service.search_places(query)
       if response['candidates'].any?
         process_candidate(response['candidates'].first)
-      else
-        @places_details.push({ 'name' => query, 'error' => 'No results found' })
       end
     end
   end

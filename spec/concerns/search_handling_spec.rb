@@ -31,7 +31,7 @@ RSpec.describe SearchHandling, type: :module do
                                                                address: '東京駅',
                                                                selected_time: '30分',
                                                                selected_activity: '公園',
-                                                               selected_age: '幼児'
+                                                               selected_age: '3歳以下'
                                                              })
   end
 
@@ -44,7 +44,7 @@ RSpec.describe SearchHandling, type: :module do
 
   describe '#generate_user_input' do
     it 'ユーザー入力から適切なリクエスト文字列を生成する' do
-      expected_string = '東京駅から車で30分以内で幼児の子供が対象の公園できる場所を正式名称で2件提示してください'
+      expected_string = '東京駅から車で正確に30分で到着する3歳以下の子供が遊べる公園を場所の正式名称のみ8件回答してください。なるべく過去に回答していない場所を提示してください。'
       expect(dummy_instance.generate_user_input).to eq(expected_string)
     end
   end
