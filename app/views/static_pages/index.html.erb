@@ -2,65 +2,71 @@
   <%= image_tag 'result.png', class: "h-96 w-96" %>
 </div>
 
-<p class="text-center font-sans text-7xl font-bold text-lime-500">
+<p class="text-center font-sans text-4xl md:text-7xl lg:text-7xl xl:text-7xl font-bold text-lime-500">
   こどもとどこいく？
 </p>
 
-<p class="text-sky-800 text-3xl text-center mt-24">
+<p class="text-sky-800 text-xl md:text-3xl lg:text-3xl xl:text-3xl text-center mt-24">
   このようなお悩みはありませんか？
 </p>
 
-<ul class="text-sky-800 text-2xl text-center list-none space-y-2 mt-8">
+<ul class="text-sky-800 text-lg md:text-2xl lg:text-2xl xl:text-2xl text-center list-none space-y-2 mt-8">
   <li>・明日休みだが子供をどこに遊びに連れて行こう？</li>
   <li>・いつも同じ場所で遊んでいて飽きてきている</li>
 </ul>
 
-<p class="text-sky-800 text-3xl text-center mt-12">
+<p class="text-sky-800 text-xl md:text-3xl lg:text-3xl xl:text-3xl text-center mt-12">
   生成型AIがあなたのお悩みに寄り添います！
 </p>
 
 <div class="flex justify-center mt-16">
-    <button class="flex items-center justify-center px-12 py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal()">
-        ここから始める
+    <button class="flex items-center justify-center px-4 md:px-12 py-2 md:py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal()">
+      ここから始める
     </button>
 </div>
 
 <div class="w-2/3 border-t-4 border-sky-800 mx-auto mt-20"></div>
 
-<p class="text-sky-800 text-3xl text-center mt-16">＜使い方＞</p>
+<p class="text-sky-800 text-xl md:text-3xl lg:text-3xl xl:text-3xl text-center mt-16">＜使い方＞</p>
 
-<div class="items-center shadow-xl rounded-lg bg-white border border-gray-300 w-1/2 mx-auto pt-4 mt-12">
-  <p class="text-sky-800 text-xl text-center mt-4">①交通手段等を選択し検索します</p>
+<div class="shadow-xl rounded-lg bg-white items-center border border-gray-300 my-12 mx-24 md:mx-24 lg:mx-auto max-w-3xl px-4 sm:px-6">
+  <p class="text-sky-800 text-md sm:text-lg md:text-xl lg:text-2xl text-center my-3 sm:my-4 md:my-6">
+    ①交通手段等を選択し検索します
+  </p>
   <div class="flex justify-center items-center">
-    <%= image_tag 'search.png', class: "h-96 w-96" %>
+    <%= image_tag 'search.png', class: "h-auto w-auto max-w-full max-h-60 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
   </div>
 </div>
 
-<div class="items-center shadow-xl rounded-lg bg-white border border-gray-300 w-1/2 mx-auto pt-4 mt-12">
-  <p class="text-sky-800 text-xl text-center mt-4 mb-8">②検索結果から行きたい場所を選択しここに行くを押します</p>
-  <div class="flex justify-center items-center">
-    <%= image_tag 'answer.png', class: "h-80 w-80 mb-8" %>
+<div class="shadow-xl rounded-lg bg-white items-center border border-gray-300 my-12 mx-24 md:mx-24 lg:mx-auto max-w-3xl px-4 sm:px-6">
+  <p class="text-sky-800 text-md sm:text-lg md:text-xl lg:text-2xl text-center my-3 sm:my-4 md:my-6">
+    ②検索結果から行きたい場所を選択しここに行くを押します
+  </p>
+  <div class="flex justify-center items-center pt-4">
+    <%= image_tag 'answer.png', class: "h-auto w-auto max-w-full max-h-60 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
   </div>
 </div>
 
-<div class="items-center shadow-xl rounded-lg bg-white border border-gray-300 w-1/2 mx-auto pt-4 mt-12">
-  <p class="text-sky-800 text-xl text-center mt-4 mb-8">③自動でルート案内してくれますので行くだけです</p>
-  <div class="flex justify-center items-center">
-    <%= image_tag 'route.png', class: "h-80 w-80 mb-8" %>
+<div class="shadow-xl rounded-lg bg-white items-center border border-gray-300 my-12 mx-24 md:mx-24 lg:mx-auto max-w-3xl px-4 sm:px-6">
+  <p class="text-sky-800 text-md sm:text-lg md:text-xl lg:text-2xl text-center my-3 sm:my-4 md:my-6">
+    ③自動でルート案内してくれますので行くだけです
+  </p>
+  <div class="flex justify-center items-center pt-4">
+    <%= image_tag 'route.png', class: "h-auto w-auto max-w-full max-h-48 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
   </div>
 </div>
 
 <div class="flex justify-center mt-16">
-    <button class="flex items-center justify-center px-12 py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal()">
-        ここから始める
+    <button class="flex items-center justify-center px-4 md:px-12 py-2 md:py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal()">
+      ここから始める
     </button>
 </div>
 
 <div class="w-2/3 border-t-4 border-sky-800 mx-auto mt-20"></div>
 
-<p class="text-sky-800 text-3xl text-center mt-16">＜ログインすると＞</p>
+<p class="text-sky-800 text-xl md:text-3xl lg:text-3xl xl:text-3xl text-center mt-16">＜ログインすると＞</p>
 
-<p class="text-sky-800 text-xl text-center mt-16">本リリース後に下記を追記します</p>
+<p class="text-sky-800 text-lg md:text-xl lg:text-xl xl:text-xl text-center mt-16">本リリース後に下記を追記します</p>
 <br>
 <br>
 <br>
