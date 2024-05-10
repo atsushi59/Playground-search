@@ -2,24 +2,24 @@
   <% if @places_details.any? %>
     <% unique_places = @places_details.uniq { |place| place['name'] } %>
     <% if unique_places.any? %>
-      <p class="text-center text-3xl font-bold text-lime-500">検索結果</p>
-      <div class="grid grid-cols-2 gap-4 mt-8">
+      <p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500">検索結果</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
         <% unique_places.each do |place_detail| %>
           <% if place_detail['error'].nil? && (place_detail['website'].present? || (place_detail['opening_hours'] && place_detail['opening_hours']['weekday_text'])) %>
-              <div class="shadow-xl rounded-lg bg-white p-4 border border-gray-200">              <div class="flex flex-col items-center justify-center w-full">
-                <p class="text-center text-2xl my-1 text-sky-800"><%= place_detail['name'] %></p>
-                <p class="text-center my-1 text-sky-800">住所: <%= place_detail['formatted_address'] %></p>
+              <div class="shadow-xl rounded-lg bg-white p-4 mx-8 border border-gray-200">              <div class="flex flex-col items-center justify-center w-full">
+                <p class="text-center text-gl md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800"><%= place_detail['name'] %></p>
+                <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">住所: <%= place_detail['formatted_address'] %></p>
                 <% if place_detail['opening_hours'] && place_detail['opening_hours']['weekday_text'] %>
                   <div class="flex flex-col items-center my-1">
-                    <p class="text-center text-sky-800">営業時間</p>
-                    <p class="text-center text-sky-800"><%= place_detail['opening_hours']['weekday_text'][Time.zone.today.wday.zero? ? 6 : Time.zone.today.wday - 1] %></p>
-                    <p class="text-center text-sky-800"><%= place_detail['opening_hours']['weekday_text'][5] %></p>
-                    <p class="text-center text-sky-800"><%= place_detail['opening_hours']['weekday_text'][6] %></p>
+                    <p class="text-center text-sm md:text-base lg:text-base xl:text-base text-sky-800">営業時間</p>
+                    <p class="text-center text-sm md:text-base lg:text-base xl:text-base text-sky-800"><%= place_detail['opening_hours']['weekday_text'][Time.zone.today.wday.zero? ? 6 : Time.zone.today.wday - 1] %></p>
+                    <p class="text-center text-sm md:text-base lg:text-base xl:text-base text-sky-800"><%= place_detail['opening_hours']['weekday_text'][5] %></p>
+                    <p class="text-center text-sm md:text-base lg:text-base xl:text-base text-sky-800"><%= place_detail['opening_hours']['weekday_text'][6] %></p>
                   </div>
                 <% else %>
-                  <p class="text-center text-sky-800">営業時間の情報はありません。</p>
+                  <p class="text-center text-sm md:text-base lg:text-base xl:text-base text-sky-800">営業時間の情報はありません。</p>
                 <% end %>
-                <p class="text-center my-1 text-sky-800">所要時間: 約
+                <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">所要時間: 約
                   <% total_minutes = place_detail['travel_time_text'].to_i %>
                   <% hours = total_minutes / 60 %>
                   <% minutes = total_minutes % 60 %>
@@ -28,7 +28,7 @@
                   <% end %>
                   <%= minutes %>分
                 </p>
-                <p class="text-center my-1 text-sky-800">
+                <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">
                   <% if place_detail['website'].present? %>
                     ホームページ: <%= link_to 'こちら', place_detail['website'], class: "text-blue-500 underline" %>
                   <% else %>
@@ -38,7 +38,7 @@
                 <% if place_detail['photo_url'] %>
                   <img src="<%= place_detail['photo_url'] %>" alt="<%= place_detail['name'] %>の写真" class="mx-auto w-80 h-80 my-1">
                 <% end %>
-                <%= link_to 'ここに行く', "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place_detail['name'])}&travelmode=#{@travel_mode}", target: "_blank", class:"px-4 py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" %>
+                <%= link_to 'ここに行く', "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place_detail['name'])}&travelmode=#{@travel_mode}", target: "_blank", class:"flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
               </div>
             </div>
           <% end %>
@@ -51,6 +51,6 @@
     <p class="text-center">結果が見つかりませんでした。</p>
   <% end %>
   <div class="mt-10 text-center">
-    <%= link_to 'TOPに戻る', root_path, class:"px-8 py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" %><br>
+    <%= link_to 'TOPに戻る', root_path, class:"px-4 md:px-16 py-2 md:py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" %><br>
   </div><br><br>
 </div>
