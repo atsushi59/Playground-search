@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class SearchesController < ApplicationController
   include SearchHandling
@@ -44,6 +45,18 @@ class SearchesController < ApplicationController
     end
   end
 
+  def check_search_limit
+    ip_address = request.remote_ip
+    today_search_count = count_today_searches(ip_address)
+
+    if today_search_count >= 3
+      flash[:danger] = '本日の検索上限を超えました'
+      redirect_to root_path
+    else
+      SearchLog.create(ip_address:)
+    end
+  end
+
   private
 
   def set_google_places_service
@@ -60,18 +73,10 @@ class SearchesController < ApplicationController
     @navitime_route_service = NavitimeRouteService.new(api_key)
   end
 
-  def check_search_limit
-    return unless Rails.env.production?
-    ip_address = request.remote_ip
-    today_search_count = SearchLog.where(ip_address: ip_address)
-                                  .where("created_at >= ?", Time.zone.now.beginning_of_day)
-                                  .where("created_at <= ?", Time.zone.now.end_of_day)
-                                  .count
-    if today_search_count >= 3
-      flash[:danger] = "本日の検索上限を超えました"
-      redirect_to root_path
-    else
-      SearchLog.create(ip_address: ip_address)
-    end
+  def count_today_searches(ip_address)
+    SearchLog.where(ip_address:)
+             .where('created_at >= ?', Time.zone.now.beginning_of_day)
+             .where('created_at <= ?', Time.zone.now.end_of_day)
+             .count
   end
 end
