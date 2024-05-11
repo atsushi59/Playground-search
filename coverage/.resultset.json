@@ -830,17 +830,17 @@
           null,
           null,
           1,
-          null,
-          5,
-          5,
-          null,
-          null,
-          null,
           5,
           0,
           0,
           null,
-          5,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
           null,
           null,
           null
@@ -1277,23 +1277,8 @@
           null,
           null
         ]
-      },
-      "/myapp/app/models/search_log.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/myapp/app/models/application_record.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1715348105
+    "timestamp": 1715442250
   }
 }
