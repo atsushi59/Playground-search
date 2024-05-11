@@ -61,6 +61,7 @@ class SearchesController < ApplicationController
   end
 
   def check_search_limit
+    return unless Rails.env.production?
     ip_address = request.remote_ip
     today_search_count = SearchLog.where(ip_address: ip_address)
                                   .where("created_at >= ?", Time.zone.now.beginning_of_day)
