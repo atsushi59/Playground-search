@@ -52,7 +52,7 @@ module IndexHandling
 
   def add_place_to_results(place_detail, travel_time_minutes, opening_hours, photo_reference, formatted_address)
     place_detail['formatted_address'] = formatted_address
-    return unless travel_time_minutes && travel_time_minutes <= session[:selected_time].to_i
+    return unless travel_time_minutes && travel_time_minutes.is_a?(Integer) && travel_time_minutes <= session[:selected_time].to_i
 
     @places_details.push(place_detail.merge('today_opening_hours' => opening_hours,
                                             'photo_url' => photo_reference))
