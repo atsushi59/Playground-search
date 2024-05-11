@@ -1,6 +1,6 @@
 <div class="flex justify-center mt-16">
     <button class="flex items-center justify-center px-4 md:px-12 py-2 md:py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal()">
-        <%= defined?(button_text) ? button_text : 'ここから始める' %>
+        <%= button_text %>
     </button>
 </div>
 
@@ -69,13 +69,6 @@
                 form.submit();
             }, 1000);
         });
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var button = document.querySelector('button[onclick="openModal()"]');
-        if (button) {
-            button.textContent = '再検索';
-        }
     });
 
     function openModal() {
