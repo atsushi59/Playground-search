@@ -5,7 +5,7 @@ module CalculateTravelTimeHandling
 
   def calculate_travel_time_by_car(origin, destination)
     response = @directions_service.get_directions(origin, destination, Time.now.to_i)
-    return '所要時間の情報は利用できません。' unless response.success? && response.parsed_response['routes'].any?
+    return nil unless response.success? && response.parsed_response['routes'].any?
 
     duration_text = response.parsed_response['routes'].first['legs'].first['duration']['text']
     convert_duration_to_minutes(duration_text)
@@ -26,7 +26,7 @@ module CalculateTravelTimeHandling
   end
 
   def extract_time_from_response(response)
-    return '所要時間の情報は利用できません。' unless response.success? && response.parsed_response['items'].any?
+    return nil unless response.success? && response.parsed_response['items'].any?
 
     response.parsed_response['items'].first['summary']['move']['time']
   end
