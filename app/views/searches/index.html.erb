@@ -51,45 +51,10 @@
   <% else %>
     <p class="text-center">結果が見つかりませんでした。</p>
   <% end %>
-  <%= render 'static_pages/search', locals: { button_text: '再検索' } %>
+  <%= render 'shared/search', button_text: '再検索' %>
     <br>
     <br>
     <br>
 </div>
 
-<script>
-    function showPosition(position) {
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
-
-        var geocoder = new google.maps.Geocoder;
-        var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
-
-        geocoder.geocode({'location': latlng}, function(results, status) {
-            if (status === 'OK' && results[0]) {
-                var fullAddress = results[0].formatted_address;
-                console.log(fullAddress);
-
-                var address = fullAddress.replace(/日本、〒\d{3}-\d{4} /, '');
-                console.log(address);
-
-                document.getElementById('hidden_address').value = address;
-                document.getElementById('location_form').submit();
-            } else {
-                window.alert('位置情報を取得できませんでした。デバイスのGPSが有効か確認してください。');
-            }
-        });
-    }
-
-    document.getElementById('location_form').addEventListener('submit', function(event) {
-        if (!document.getElementById('hidden_address').value) {
-            event.preventDefault(); 
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                console.log("ジオロケーションは利用できません");
-            }
-        }
-    });
-</script>
-
+<%= render 'shared/location_script' %>
