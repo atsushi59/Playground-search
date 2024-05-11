@@ -142,7 +142,7 @@
                 document.getElementById('hidden_address').value = address;
                 document.getElementById('location_form').submit();
             } else {
-                window.alert('No results found or Geocoder failed due to: ' + status);
+                window.alert('位置情報を取得できませんでした。デバイスのGPSが有効か確認してください。');
             }
         });
     }
