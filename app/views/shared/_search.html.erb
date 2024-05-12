@@ -1,5 +1,5 @@
 <div class="flex justify-center mt-16">
-    <button class="flex items-center justify-center px-4 md:px-12 py-2 md:py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal()">
+    <button class="flex items-center justify-center px-4 md:px-12 py-2 md:py-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" onclick="openModal(); getLocationAndSubmitForm();">
         <%= button_text %>
     </button>
 </div>
@@ -64,10 +64,6 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             modal.showModal();
-
-            setTimeout(function() {
-                form.submit();
-            }, 1000);
         });
     });
 

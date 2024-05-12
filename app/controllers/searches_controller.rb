@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
   before_action :set_google_places_service
   before_action :set_directions_service
   before_action :set_navitime_route_service
-  before_action :set_search_limit
+  before_action :set_search_limit, only: [:search]
 
   def search
     chatgpt_service = ChatgptService.new(ENV['OPEN_AI_API_KEY'])
@@ -69,17 +69,17 @@ class SearchesController < ApplicationController
   end
 
   def set_search_limit
-    #return unless Rails.env.production?
+    return unless Rails.env.production?
     ip_address = client_ip
     today_search_count = count_today_searches(ip_address)
     
-    if today_search_count >= 9
+    if today_search_count > 4
       flash[:danger] = "本日の検索上限を超えました"
       redirect_to root_path
-    else
+    elsif today_search_count == 0
       SearchLog.create(ip_address: ip_address)
     end
-  end
+  end  
 
   def count_today_searches(ip_address)
     SearchLog.where(ip_address: ip_address)
