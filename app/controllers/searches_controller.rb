@@ -72,17 +72,12 @@ class SearchesController < ApplicationController
     #return unless Rails.env.production?
     ip_address = client_ip
     today_search_count = count_today_searches(ip_address)
-  
-    if today_search_count >= 3
+    
+    if today_search_count >= 7
       flash[:danger] = "本日の検索上限を超えました"
       redirect_to root_path
     else
-      if count_today_searches(ip_address) < 3
-        SearchLog.create(ip_address: ip_address)
-      else
-        flash[:danger] = "本日の検索上限を超えました"
-        redirect_to root_path
-      end
+      SearchLog.create(ip_address: ip_address)
     end
   end
 
