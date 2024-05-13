@@ -69,14 +69,16 @@ class SearchesController < ApplicationController
   end
 
   def set_search_limit
-    return unless Rails.env.production?
+    #return unless Rails.env.production?
     ip_address = client_ip
     today_search_count = count_today_searches(ip_address)
     
-    if today_search_count > 4
+    if today_search_count >= 3
       flash[:danger] = "本日の検索上限を超えました"
-      redirect_to root_path
-    elsif today_search_count == 0
+      redirect_to root_path and return
+    end
+  
+    if today_search_count < 3
       SearchLog.create(ip_address: ip_address)
     end
   end  
