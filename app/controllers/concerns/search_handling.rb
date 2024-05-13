@@ -13,7 +13,7 @@ module SearchHandling
     root = "#{params[:address]}から#{params[:selected_transport]}で"
     time = "正確に#{params[:selected_time]}で到着する"
     age = "#{params[:selected_age]}の子供が遊べる"
-    activity = "#{params[:selected_activity]}を場所の正式名称のみ2件回答してください。"
+    activity = "#{params[:selected_activity]}を場所の正式名称のみ8件回答してください。"
     request = 'なるべく過去に回答していない場所を提示してください。'
     [root, time, age, activity, request].join
   end
