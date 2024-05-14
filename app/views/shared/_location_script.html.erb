@@ -1,37 +1,51 @@
 <script>
     function showPosition(position) {
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
 
-        var geocoder = new google.maps.Geocoder;
-        var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+        let geocoder = new google.maps.Geocoder;
+        let latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
 
         geocoder.geocode({'location': latlng}, function(results, status) {
             if (status === 'OK' && results[0]) {
-                var fullAddress = results[0].formatted_address;
+                let fullAddress = results[0].formatted_address;
                 console.log(fullAddress);
 
-                var address = fullAddress.replace(/日本、〒\d{3}-\d{4} /, '');
+                let address = fullAddress.replace(/日本、〒\d{3}-\d{4} /, '');
                 console.log(address);
 
                 document.getElementById('hidden_address').value = address;
                 document.getElementById('location_form').submit();
-            } else {
-                window.alert('位置情報を取得できませんでした。デバイスのGPSが有効か確認してください。');
             }
         });
     }
 
     document.getElementById('location_form').addEventListener('submit', function(event) {
         if (!document.getElementById('hidden_address').value) {
-            event.preventDefault(); 
+            event.preventDefault();
             if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                console.log("ジオロケーションは利用できません");
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
             }
         }
     });
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                window.alert("位置情報を取得できませんでした。ブラウザまたはデバイスのGPS設定を確認してください。");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                window.alert("ジオロケーションは利用できません。ブラウザまたはデバイスの設定を確認してください。");
+                break;
+            case error.TIMEOUT:
+                window.alert("位置情報の取得タイムアウトしました。");
+                break;
+        }
+        closeModal();
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.add('hidden');
+        document.getElementById('my_modal_2').close();
+    }
 </script>
-
-
