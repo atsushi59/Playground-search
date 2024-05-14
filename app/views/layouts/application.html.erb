@@ -14,14 +14,14 @@
     </script>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <% if user_signed_in?	 %>
         <%= render 'shared/header_logged_in' %>
       <% else %>
         <%= render 'shared/header_logged_out' %>
       <% end %>
     <%= render 'shared/flash_messages' %>
-    <main class="bg-sky-50 font-mono">
+    <main class="flex-grow bg-sky-50 font-mono">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
