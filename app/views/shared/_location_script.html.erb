@@ -2,17 +2,13 @@
     function showPosition(position) {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
-
         let geocoder = new google.maps.Geocoder;
         let latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
 
         geocoder.geocode({'location': latlng}, function(results, status) {
             if (status === 'OK' && results[0]) {
                 let fullAddress = results[0].formatted_address;
-                console.log(fullAddress);
-
                 let address = fullAddress.replace(/日本、〒\d{3}-\d{4} /, '');
-                console.log(address);
 
                 document.getElementById('hidden_address').value = address;
                 document.getElementById('location_form').submit();
