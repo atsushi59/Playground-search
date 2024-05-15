@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :sns_credentials, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :validatable,:omniauthable,
+          :recoverable, :rememberable, :validatable, :omniauthable,
           omniauth_providers: [:line, :google_oauth2]
 
   def self.from_omniauth(auth)

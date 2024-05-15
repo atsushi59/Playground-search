@@ -6,7 +6,7 @@
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="text-center p-4 text-base">
       <div class="mb-4">
-        <%= f.label :name, class: "block text-lg font-medium text-sky-800" %><br>
+        <%= f.label :name,t('activerecord.attributes.user.name'), class: "block text-lg font-medium text-sky-800" %><br>
         <%= f.text_field :name, autofocus: true, class: "w-full max-w-xs border-2 border-blue-300 h-10" %>
       </div>
 
