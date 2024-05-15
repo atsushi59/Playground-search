@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable,:omniauthable,
-          omniauth_providers: [:line]
+          omniauth_providers: [:line, :google_oauth2]
 
   def self.from_omniauth(auth)
     sns_credential = SnsCredential.find_by(provider: auth.provider, uid: auth.uid)
