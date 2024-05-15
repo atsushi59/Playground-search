@@ -1,25 +1,28 @@
-<h2>Change your password</h2>
+<br>
+<p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mb-6"><%= t('devise.mailer.reset_password_instructions.action') %></p>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-sm sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
+    <div class="text-center p-4 text-base">
+      <div class="mb-4">
+        <%= f.label :new_password, class: "block text-lg font-medium text-sky-800" %><br>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "w-full max-w-xs border-2 border-blue-300 h-10" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <div class="mb-4">
+        <%= f.label :password_confirmation, class: "block text-lg font-medium text-sky-800" %><br>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full max-w-xs border-2 border-blue-300 h-10" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+      <div class="text-center mt-4 mb-4">
+        <%= f.submit t('devise.passwords.submit'), class: "px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-6" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+<br>
 
-<%= render "devise/shared/links" %>
