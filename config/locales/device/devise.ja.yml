@@ -33,7 +33,7 @@ ja:
       confirmed: メールアドレスが確認できました。
       new:
         resend_confirmation_instructions: アカウント確認メール再送
-        sign_in: ログイン
+        sign_in: サインイン
         sign_up: アカウント登録
         forgot_your_password: パスワード変更
         didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか？
