@@ -5,17 +5,23 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="text-center p-4 text-base">
       <div class="mb-4">
-        <%= f.label :email, class: "block text-lg font-medium text-sky-800" %><br />
+        <%= f.label :email, t('activerecord.attributes.user.email'), class: "block text-lg font-medium text-sky-800" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full max-w-xs border-2 border-blue-300 h-10" %>
       </div>
 
       <div class="mb-4">
-        <%= f.label :password, class: "block text-lg font-medium text-sky-800" %><br />
+        <%= f.label :password, t('activerecord.attributes.user.password'), class: "block text-lg font-medium text-sky-800" %><br />
         <%= f.password_field :password, autocomplete: "current-password", class: "w-full max-w-xs border-2 border-blue-300 h-10" %>
       </div>
 
       <div class="text-center mt-4 mb-4">
         <%= f.submit t('devise.confirmations.new.sign_in'), class: "px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-6" %>
+      </div>
+
+      <div class="actions">
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <%= button_to "#{provider.to_s.titleize}アカウントでログインする", omniauth_authorize_path(resource_name, provider), method: :post, data: { turbo: false }, class: "btn btn-secondary w-full" %><br />
+        <% end %>
       </div>
 
       <div class="mt-8 text-center">
