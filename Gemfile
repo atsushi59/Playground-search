@@ -13,6 +13,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-line'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
