@@ -9,6 +9,9 @@ gem 'geocoder'
 gem 'httparty'
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 

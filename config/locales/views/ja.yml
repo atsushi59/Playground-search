@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+    errors:
+      format: "%{message}"
+      models:
+        user:
+          attributes:
+            name:
+              blank: を入力してください
+            email:
+              blank: を入力してください
+            password:
+              blank: を入力してください
+              too_short: は%{count}文字以上にしてください
+            password_confirmation:
+              confirmation: が一致していません

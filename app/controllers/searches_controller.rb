@@ -74,7 +74,7 @@ class SearchesController < ApplicationController
     today_search_count = count_today_searches(ip_address)
     
     if today_search_count >= 3
-      flash[:danger] = "本日の検索上限を超えました"
+      flash[:alert] = "本日の検索上限を超えました"
       redirect_to root_path and return
     end
   
