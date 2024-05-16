@@ -30,6 +30,7 @@ module IndexHandling
     travel_time_minutes = calculate_travel_time(place_detail)
     formatted_address = format_address(place_detail['formatted_address'])
     add_place_to_results(place_detail, travel_time_minutes, opening_hours, photo_reference, formatted_address)
+    save_search_result(place_detail, opening_hours, photo_reference)
   end
 
   def format_address(address)
@@ -56,5 +57,17 @@ module IndexHandling
 
     @places_details.push(place_detail.merge('today_opening_hours' => opening_hours,
                                             'photo_url' => photo_reference))
+  end
+
+  def save_search_result(place_detail, opening_hours, photo_reference)
+    return unless user_signed_in?
+    Place.find_or_create_by(name: place_detail['name'],
+                            address: place_detail['formatted_address']) do |new_place|
+      new_place.website = place_detail['website']
+      new_place.opening_hours = opening_hours
+      new_place.photo_url = photo_reference
+      new_place.activity_type = session[:selected_activity]
+      new_place.user_id = current_user.id
+    end
   end
 end
