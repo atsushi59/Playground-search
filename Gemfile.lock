@@ -480,6 +480,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   letter_opener_web (~> 2.0)
+  mail
   omniauth-google-oauth2
   omniauth-line
   omniauth-rails_csrf_protection
