@@ -19,8 +19,8 @@
                     <div class="flex justify-between items-center pb-8">
                         <div class="text-xl font-medium text-sky-800 pl-6">アバター</div>
                         <div>
-                            <%= image_tag @user.avatar.url, size: '150x150', class: "rounded-full mx-auto mt-8" %>
-                            <%= f.file_field :avatar, accept: 'image/*', class: "w-full text-base text-center font-medium text-sky-800 mt-4" %>
+                            <%= image_tag @user.avatar.url, size: '150x150', class: "rounded-full mx-auto mt-8", id: 'avatar-preview' %>
+                            <%= f.file_field :avatar, accept: 'image/*', class: "w-full text-base text-center font-medium text-sky-800 mt-4", id: 'avatar-input' %>
                             <% if @user.avatar? %>
                                 <div class="flex items-center mt-4">
                                     <p class="text-sky-800">現在のアバターを削除しますか？</p>
@@ -38,3 +38,25 @@
         </div>
     </div>
 </div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    var avatarInput = document.getElementById('avatar-input');
+    var avatarPreview = document.getElementById('avatar-preview');
+
+    avatarInput.addEventListener('change', function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            avatarPreview.src = e.target.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+});
+
+</script>

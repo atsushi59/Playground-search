@@ -78,17 +78,17 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { protocol: 'https', host:'https://where-do-you-take-your-kids.onrender.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.example.com',
     port:                 587,               
-    domain:               'example.com',      
+    domain:               'gmail.com',      
     user_name:            ENV['GOOGLE_CLIENT_ID'],   
     password:             ENV['GOOGLE_CLIENT_SECRET'],
     authentication:       'plain',
-    enable_starttls_auto: true  # TLSを強制するかどうか
+    enable_starttls_auto: true
   }
-  config.action_mailer.default_url_options = { host: 'example.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
