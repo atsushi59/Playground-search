@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  resource :profiles
   root 'static_pages#index'
   post 'search', to: 'searches#search'
   get 'index', to: 'searches#index'
