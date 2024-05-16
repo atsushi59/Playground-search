@@ -11,7 +11,7 @@ ja:
         password_confirmation: パスワード（確認用）
         new_password: 新しいパスワード(6文字以上)
     errors:
-      format: "%{message}"
+      format: "%{attribute}%{message}"
       models:
         user:
           attributes:
@@ -19,6 +19,7 @@ ja:
               blank: を入力してください
             email:
               blank: を入力してください
+              taken: は既に使用されています
             password:
               blank: を入力してください
               too_short: は%{count}文字以上にしてください
