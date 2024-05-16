@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   validates :name, presence: true
   has_many :sns_credentials, dependent: :destroy
-  has_one_attached :avatar
+  mount_uploader :avatar, UserImageUploader
 
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable, :omniauthable,

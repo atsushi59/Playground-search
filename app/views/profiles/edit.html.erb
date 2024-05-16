@@ -1,2 +1,40 @@
-<h1>Profiles#edit</h1>
-<p>Find me in app/views/profiles/edit.html.erb</p>
+<p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mt-6 pb-4">編集ページ</p>
+<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-sm sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4 mt-4 pb-4">
+    <div style="display: flex; justify-content: center; align-items: center; min-height: 50vh;">
+        <div class="text-center pb-4">
+            <%= form_with model: @user, url: profiles_path, method: :put, local: true do |f| %>
+                <div class="w-full">
+                    <div class="flex justify-between items-center text-center pb-8 pt-6">
+                        <div class="text-xl font-medium text-sky-800 pl-10">氏名</div>
+                        <div>
+                            <%= f.text_field :name, autocomplete: "new-password", class: "input input-bordered w-full text-xl text-center font-medium text-sky-800 border-2 border-blue-300" %>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center pb-8">
+                        <div class="text-xl font-medium text-sky-800">メールアドレス</div>
+                        <div>
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full text-xl text-center font-medium text-sky-800 border-2 border-blue-300" %>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center pb-8">
+                        <div class="text-xl font-medium text-sky-800 pl-6">アバター</div>
+                        <div>
+                            <%= image_tag @user.avatar.url, size: '150x150', class: "rounded-full mx-auto mt-8" %>
+                            <%= f.file_field :avatar, accept: 'image/*', class: "w-full text-base text-center font-medium text-sky-800 mt-4" %>
+                            <% if @user.avatar? %>
+                                <div class="flex items-center mt-4">
+                                    <p class="text-sky-800">現在のアバターを削除しますか？</p>
+                                    <%= f.check_box :remove_avatar, class: "h-6 w-6 ml-2" %>
+                                </div>
+                            <% end %>
+                        </div>
+                        <%= f.hidden_field :avatar_cache %>
+                    </div>
+                </div>
+                <div class="text-center mt-8 mb-4">
+                    <%= f.submit "更新", class: "px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-6" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

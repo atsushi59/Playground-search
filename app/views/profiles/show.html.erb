@@ -1,2 +1,25 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mt-6 pb-4">マイページ</p>
+<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-sm sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4 mt-4 pb-4">
+    <div style="display: flex; justify-content: center; align-items: center; min-height: 50vh;">
+        <div class="text-center pb-4">
+            <table class="pb-8 w-full">
+                <tr>
+                    <th class="text-xl font-medium text-sky-800 pb-8 pt-6 mr-6">氏名</th>
+                    <td class="text-xl font-medium text-sky-800 pb-8 pt-6 "><%= current_user.name %></td>
+                </tr>
+                <tr>
+                    <th class="text-xl font-medium text-sky-800 pb-8">メールアドレス　　</th>
+                    <td class="text-xl font-medium text-sky-800 pb-8"><%= current_user.email %></td>
+                </tr>
+                <tr>
+                    <th class="text-xl font-medium text-sky-800 pb-8">アバター</th>
+                    <td class="pb-4 pl-14 text-right"><%= image_tag current_user.avatar_url, size: '150x150' %></td>
+                </tr> 
+            </table>
+            <div class="text-center mt-8 mb-4">
+                <%= link_to '編集', edit_profiles_path, class: "px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-6" %>
+            </div>    
+        </div>
+    </div>
+</div>
+
