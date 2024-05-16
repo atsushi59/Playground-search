@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   validates :name, presence: true
+  has_many :places, dependent: :destroy
   has_many :sns_credentials, dependent: :destroy
   mount_uploader :avatar, UserImageUploader
 
