@@ -69,7 +69,7 @@ class SearchesController < ApplicationController
   end
 
   def set_search_limit
-    #return unless Rails.env.production?
+    return unless Rails.env.production?
     ip_address = client_ip
     today_search_count = count_today_searches(ip_address)
     
