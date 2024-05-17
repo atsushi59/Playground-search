@@ -30,21 +30,24 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
         <% @places.each do |place| %>
             <div class="shadow-xl rounded-lg bg-white p-4 mx-8 pt-4 border border-gray-200 mb-8">
-            <div class="flex flex-col items-center justify-center w-full">
+                <div class="flex flex-col items-center justify-center w-full">
                 <p class="text-center text-gl md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800"><%= place.name %></p>
                 <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">住所: <%= place.address %></p>
                 <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">
-                <% if place.website.present? %>
+                    <% if place.website.present? %>
                     ホームページ: <%= link_to 'こちら', place.website, class: "text-blue-500 underline" %>
-                <% else %>
+                    <% else %>
                     ホームページはありません
-                <% end %>
+                    <% end %>
                 </p>
+                <div>
+                    <%= render 'shared/favorite_button', place: place %>
+                </div>
                 <% if place.photo_url.present? %>
-                <img src="<%= place.photo_url %>" alt="<%= place.name %>の写真" class="mx-auto w-80 h-80 my-1">
+                    <img src="<%= place.photo_url %>" alt="<%= place.name %>の写真" class="mx-auto w-80 h-80 my-1">
                 <% end %>
                 <%= link_to 'ここに行く', "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place.address)}", target: "_blank", class:"flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
-            </div>
+                </div>
             </div>
         <% end %>
         </div>

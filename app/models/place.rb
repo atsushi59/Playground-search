@@ -1,5 +1,5 @@
 class Place < ApplicationRecord
     belongs_to :user
-    scope :by_user, -> (user) { where(user_id: user.id) }
+    has_many :place_favorites, dependent: :destroy
     mount_uploader :photo_url, PlaceImageUploader
 end
