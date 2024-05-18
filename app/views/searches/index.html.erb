@@ -52,7 +52,15 @@
                 <% if place_detail['photo_url'] %>
                   <img src="<%= place_detail['photo_url'] %>" alt="<%= place_detail['name'] %>の写真" class="mx-auto w-80 h-80 my-1">
                 <% end %>
-                <%= link_to 'ここに行く', "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place_detail['name'])}&travelmode=#{@travel_mode}", target: "_blank", class:"flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
+                <% place = Place.find_by(name: place_detail['name'], address: place_detail['formatted_address']) %>
+                <% if place.present? %>
+                  <%= form_with url: place_place_histories_path(place_id: place.id), method: :post, local: true, html: { class: "new_tab_form" } do %>
+                    <%= hidden_field_tag :destination, "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place_detail['name'])}&travelmode=#{@travel_mode}" %>
+                    <%= submit_tag 'ここに行く', class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
+                  <% end %>
+                <% else %>
+                  <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-red-500">Place情報が見つかりませんでした。</p>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -71,3 +79,17 @@
 </div>
 
 <%= render 'shared/location_script' %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const forms = document.querySelectorAll('.new_tab_form');
+    forms.forEach(form => {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const destination = form.querySelector('input[name="destination"]').value;
+        window.open(destination, '_blank');
+        form.submit();
+      });
+    });
+  });
+</script>
