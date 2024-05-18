@@ -1,6 +1,7 @@
 class PlaceFavoritesController < PlacesController
     include ActionView::RecordIdentifier
     
+    before_action :authenticate_user!
     before_action :set_place, only: [:create]
     before_action :set_favorite, only: [:destroy]
 
