@@ -1,0 +1,18 @@
+<h1>レビュー一覧</h1>
+
+<% if @reviews.any? %>
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        <p><strong><%= review.user.name %></strong> (評価: <%= review.rating %>)</p>
+        <p><%= review.body %></p>
+        <p>投稿日: <%= review.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+        <%= link_to '編集', edit_place_review_path(review.place, review), class: 'btn btn-secondary' %>
+        <%= link_to '削除', place_review_path(review.place, review), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>レビューがありません。</p>
+<% end %>
+

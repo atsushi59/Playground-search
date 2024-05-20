@@ -1,0 +1,27 @@
+    <div class="flex flex-col items-center justify-center w-full mt-8">
+        <div class="flex items-center space-x-2">
+            <p class="text-center text-gl md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800"><%= @place.name %></p>
+        </div>
+        <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">住所: <%= @place.address %></p>
+        <% if @place.photo_url %>
+            <img src="<%= @place.photo_url %>" alt="<%= @place.name %>" class="mx-auto w-80 h-80 my-1">
+        <% end %>
+
+        <%= form_with(model: [ @place, @review ], local: true) do |form| %>
+            <div class="field">
+                <%= form.label :rating, "評価" %>
+                <%= form.number_field :rating, in: 1..5 %>
+            </div>
+            
+            <div class="field">
+                <%= form.label :body, "レビュー" %>
+                <%= form.text_area :body %>
+            </div>
+            
+            <div class="actions">
+                <%= form.submit "レビューを投稿する" %>
+            </div>
+        <% end %>
+    </div>
+
+

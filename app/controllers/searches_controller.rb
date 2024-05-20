@@ -73,12 +73,12 @@ class SearchesController < ApplicationController
     ip_address = client_ip
     today_search_count = count_today_searches(ip_address)
     
-    if today_search_count >= 3
+    if today_search_count >= 5
       flash[:alert] = "本日の検索上限を超えました"
       redirect_to root_path and return
     end
   
-    if today_search_count < 3
+    if today_search_count < 5
       SearchLog.create(ip_address: ip_address)
     end
   end  
