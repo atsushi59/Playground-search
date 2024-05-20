@@ -1,0 +1,18 @@
+<div class="shadow-xl rounded-lg bg-white p-4 mx-8 pt-4 border border-gray-200 mb-8">
+    <div class="flex flex-col items-center justify-center w-full">
+        <div class="flex items-center space-x-2">
+        <p class="text-center text-gl md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800"><%= place.name %></p>
+        </div>
+        <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">住所: <%= place.address %></p>
+        <div>
+        <%= render 'shared/favorite_button', place: place %>
+        </div>
+        <% if place.photo_url %>
+        <img src="<%= place.photo_url %>" alt="<%= place.name %>" class="mx-auto w-80 h-80 my-1">
+        <% end %>
+        <%= form_with url: place_place_histories_path(place_id: place.id), method: :post, local: true, data: { turbo: false }, html: { class: "new_tab_form" } do %>
+        <%= hidden_field_tag :destination, "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place.address)}" %>
+        <%= submit_tag 'ここに行く', class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
+        <% end %>
+    </div>
+</div>
