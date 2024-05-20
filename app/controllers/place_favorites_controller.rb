@@ -1,23 +1,11 @@
 class PlaceFavoritesController < PlacesController
-    include ActionView::RecordIdentifier
     
     before_action :authenticate_user!
-    before_action :set_place, only: [:create]
     before_action :set_favorite, only: [:destroy]
 
     def index
         favorite_place_ids = current_user.places_favorites.pluck(:place_id)
-        @places = Place.where(id: favorite_place_ids)
-    
-        if params[:address_cont].present? || params[:activity_type_eq].present? || params[:keyword].present?
-            @places = @places.where("address LIKE ?", "%#{params[:address_cont]}%") if params[:address_cont].present?
-            @places = @places.where("activity_type = ?", params[:activity_type_eq]) if params[:activity_type_eq].present?
-            if params[:keyword].present?
-            keyword = "%#{params[:keyword]}%"
-            @places = @places.where("name LIKE ? OR address LIKE ?", keyword, keyword)
-            end
-        end
-        @places = @places.order(id: :desc).page(params[:page]).per(10)
+        @places = filter_places(Place.where(id: favorite_place_ids))
     end
 
     def create

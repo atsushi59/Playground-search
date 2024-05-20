@@ -1,57 +1,19 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
   <p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mt-4">行った場所</p>
-      <div class="text-center mt-8 text-sky-800 overflow-x-auto">
-        <div class="inline-flex space-x-6">
-        <%= form_with url: place_histories_path, method: :get, class: "flex flex-nowrap justify-center items-center space-x-4 w-full", local: true do |f| %>
-            <div class="flex flex-col mb-4 text-xs md:text-sm lg:text-lg xl:text-lg w-32 md:w-48">
-            <%= f.label :address_cont, "都道府県", class: "mb-2" %>
-            <%= f.select :address_cont, options_for_select(prefecture_options), { prompt: '選択してください' }, class: "p-2 md:p-3" %>
-            </div>
-            <div class="flex flex-col mb-4 text-xs md:text-sm lg:text-lg xl:text-lg w-32 md:w-48">
-            <%= f.label :activity_type_eq, "活動タイプ", class: "mb-2" %>
-            <%= f.select :activity_type_eq, options_for_select(@activity_type_options), { prompt: '選択してください' }, class: "p-2 md:p-3" %>
-            </div>
-            <div class="flex flex-col mb-4 text-xs md:text-sm lg:text-lg xl:text-lg w-32 md:w-48">
-            <%= f.label :keyword, "フリーテキスト", class: "mb-2" %>
-            <%= f.text_field :keyword, class: "p-2 md:p-3" %>
-            </div>
-            <div class="flex items-end mt-2 md:mt-3 pl-2 md:pl-4">
-            <%= f.submit "検索", class: "bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring p-2 md:p-3 text-xs md:text-sm lg:text-lg xl:text-lg" %>
-            </div>
-        <% end %>
-        </div>
+
+  <%= render 'places/search_form', url: place_histories_path, activity_type_options: @activity_type_options %>
+
+  <% if @place_histories.present? && @place_histories.any? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
+      <% @place_histories.each do |place_history| %>
+        <% place = place_history.place %>
+        <%= render 'places/place_card', place: place %>
+      <% end %>
     </div>
+    <%= render 'shared/pagination', collection: @place_histories %>
+  <% else %>
+    <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-sky-800 mt-8">行った場所はありません</p>
+  <% end %>
 </div>
 
-<% if @place_histories.present? && @place_histories.any? %>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
-    <% @place_histories.each do |place_history| %>
-      <% place = place_history.place %>
-      <div class="shadow-xl rounded-lg bg-white p-4 mx-8 pt-4 border border-gray-200 mb-8">
-        <div class="flex flex-col items-center justify-center w-full">
-          <div class="flex items-center space-x-2">
-            <p class="text-center text-gl md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800"><%= place.name %></p>
-          </div>
-          <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">住所: <%= place.address %></p>
-          <% if place.opening_hours && place.opening_hours['weekday_text'] %>
-            <div class="flex flex-col items-center my-1">
-              <p class="text-center text-sm md:text-base lg:text-base xl:text-base text-sky-800">営業時間</p>
-              <p class="text-center text-sm md:text-base lg:text-base xl:text-base text-sky-800"><%= place.opening_hours['weekday_text'][Time.zone.today.wday.zero? ? 6 : Time.zone.today.wday - 1] %></p>
-            </div>
-          <% else %>
-            <p class="text-center text-sm md:text-base lg:text-base xl:text-base text-sky-800">営業時間の情報はありません。</p>
-          <% end %>
-          <%= render 'shared/favorite_button', place: place %>
-          <% if place.photo_url %>
-            <img src="<%= place.photo_url %>" alt="<%= place.name %>" class="mx-auto w-80 h-80 my-1">
-          <% end %>
-          <%= link_to 'ここに行く', "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place.address)}&travelmode=driving", target: "_blank", class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <%= render 'shared/pagination', collection: @place_histories %>
-<% else %>
-  <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-sky-800 mt-8">行った場所はありません</p>
-<% end %>
-</div>
+<%= render 'shared/form_submission' %>
