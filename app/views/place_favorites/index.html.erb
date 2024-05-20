@@ -43,7 +43,10 @@
             <% if place.photo_url %>
               <img src="<%= place.photo_url %>" alt="<%= place.name %>" class="mx-auto w-80 h-80 my-1">
             <% end %>
-            <%= link_to 'ここに行く', "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place.address)}&travelmode=driving", target: "_blank", class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
+            <%= form_with url: place_place_histories_path(place_id: place.id), method: :post, local: true, html: { class: "new_tab_form" } do %>
+              <%= hidden_field_tag :destination, "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place.address)}" %>
+              <%= submit_tag 'ここに行く', class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -53,3 +56,29 @@
     <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-sky-800 mt-8">お気に入りの場所はありません</p>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const forms = document.querySelectorAll('.new_tab_form');
+    forms.forEach(form => {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const destination = form.querySelector('input[name="destination"]').value;
+
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          window.open(destination, '_blank');
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    });
+  });
+</script>

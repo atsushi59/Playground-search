@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
   <% if @places_details.any? %>
     <% unique_places = @places_details.uniq { |place| place['name'] } %>
     <% if unique_places.any? %>
@@ -36,7 +36,6 @@
                     ホームページはありません
                   <% end %>
                 </p>
-                <!-- お気に入りボタンを表示 -->
                 <% if user_signed_in? %>
                   <div class="favorite-button-container my-1">
                     <% place = Place.find_by(name: place_detail['name'], address: place_detail['formatted_address']) %>
@@ -59,7 +58,7 @@
                     <%= submit_tag 'ここに行く', class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
                   <% end %>
                 <% else %>
-                  <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-red-500">Place情報が見つかりませんでした。</p>
+                  <%= link_to 'ここに行く', "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place_detail['name'])}&travelmode=#{@travel_mode}", target: "_blank", class:"flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
                 <% end %>
               </div>
             </div>
@@ -72,10 +71,9 @@
   <% else %>
     <p class="text-center">結果が見つかりませんでした。</p>
   <% end %>
+  <div class="mb-12">
   <%= render 'shared/search', button_text: '再検索' %>
-  <br>
-  <br>
-  <br>
+  </div>
 </div>
 
 <%= render 'shared/location_script' %>
@@ -86,9 +84,26 @@
     forms.forEach(form => {
       form.addEventListener('submit', function(event) {
         event.preventDefault();
+        const formData = new FormData(form);
         const destination = form.querySelector('input[name="destination"]').value;
-        window.open(destination, '_blank');
-        form.submit();
+
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          }
+        })
+        .then(response => {
+          window.open(destination, '_blank');
+          return response.json();
+        })
+        .then(data => {
+          if (data.error) {
+            console.error('Error:', data.error);
+          }
+        })
+        .catch(error => console.error('Error:', error));
       });
     });
   });
