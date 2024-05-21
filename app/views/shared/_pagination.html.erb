@@ -2,13 +2,19 @@
     <% if collection.prev_page %>
         <%= link_to '前へ', { page: collection.prev_page }, class: "join-item btn border-2 border-lime-500 text-lime-500 bg-white px-4 py-2 text-xl" %>
     <% end %>
-    <% (1..collection.total_pages).each do |page| %>
+
+    <% left_range = [collection.current_page - 2, 1].max
+        right_range = [left_range + 2, collection.total_pages].min
+        left_range = [right_range - 2, 1].max %>
+
+    <% (left_range..right_range).each do |page| %>
         <% if page == collection.current_page %>
         <%= link_to page, { page: page }, class: "join-item btn btn-active border-2 border-lime-500 text-white bg-lime-500 px-4 py-2 text-xl" %>
         <% else %>
         <%= link_to page, { page: page }, class: "join-item btn border-2 border-lime-500 text-lime-500 bg-white px-4 py-2 text-xl" %>
         <% end %>
     <% end %>
+
     <% if collection.next_page %>
         <%= link_to '次へ', { page: collection.next_page }, class: "join-item btn border-2 border-lime-500 text-lime-500 bg-white px-4 py-2 text-xl" %>
     <% end %>

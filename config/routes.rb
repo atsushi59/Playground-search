@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :places do
     resources :place_favorites, only: %i[create destroy]
     resources :place_histories, only: [:create]
-    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+    resources :reviews, only: [:show, :new, :create, :edit, :update, :destroy]
   end
   resources :place_favorites, only: [:index]
   resources :place_histories, only: [:index]
