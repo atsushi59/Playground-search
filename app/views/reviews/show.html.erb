@@ -30,6 +30,7 @@
     </p>
     
     <%= render 'reviews/like_button', review: @review, place: @place, like_count: @review.reviews_likes.count %>
+    <%= render 'reviews/favorite_button', review: @review, place: @place %>
 
     <div class="border-2 border-blue-500 bg-white rounded-md p-4 mt-3 w-3/4 max-w-lg h-48 text-center text-sky-800">
         レビュー

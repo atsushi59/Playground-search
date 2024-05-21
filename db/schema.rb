@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_21_063751) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_21_141919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_063751) do
     t.index ["user_id"], name: "index_places_favorites_on_user_id"
   end
 
+  create_table "review_favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "review_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_review_favorites_on_review_id"
+    t.index ["user_id"], name: "index_review_favorites_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "place_id", null: false
@@ -131,6 +140,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_063751) do
   add_foreign_key "places", "users"
   add_foreign_key "places_favorites", "places"
   add_foreign_key "places_favorites", "users"
+  add_foreign_key "review_favorites", "reviews"
+  add_foreign_key "review_favorites", "users"
   add_foreign_key "reviews", "places"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews_likes", "reviews"
