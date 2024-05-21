@@ -1,9 +1,10 @@
 class ReviewsController < ApplicationController
-    before_action :set_place, only: [:new, :create, :edit, :update]
-    before_action :set_review, only: [:edit, :update, :destroy]
+    before_action :set_place, only: [:new, :create, :edit, :update, :show]
+    before_action :set_review, only: [:edit, :update, :destroy, :show]
+    before_action :set_activity_type_options, only:[:index]
 
     def index
-        @reviews = Review.includes(:user).order(created_at: :desc)
+        @reviews = filter_reviews(Review.includes(:user, :place).order(created_at: :desc)).page(params[:page]).per(12)
     end
     
     def new
@@ -17,9 +18,13 @@ class ReviewsController < ApplicationController
         if @review.save
             redirect_to reviews_path, notice: 'レビューが投稿されました'
         else
-            render :new, alert: 'レビューの投稿に失敗しました'
+            flash.now[:alert] = 'レビューの投稿に失敗しました'
+            render :new
         end
     end
+
+    def show
+    end    
 
     def edit
     end
@@ -49,5 +54,22 @@ class ReviewsController < ApplicationController
 
     def review_params
         params.require(:review).permit(:body, :rating)
+    end
+
+    def set_activity_type_options
+        @activity_type_options = Place.distinct.pluck(:activity_type).compact
+    end
+
+    def filter_reviews(reviews)
+        if params[:address_cont].present? || params[:activity_type_eq].present? || params[:keyword].present?
+            reviews = reviews.joins(:place)
+            reviews = reviews.where("places.address LIKE ?", "%#{params[:address_cont]}%") if params[:address_cont].present?
+            reviews = reviews.where("places.activity_type = ?", params[:activity_type_eq]) if params[:activity_type_eq].present?
+            if params[:keyword].present?
+                keyword = "%#{params[:keyword]}%"
+                reviews = reviews.where("places.name LIKE ? OR places.address LIKE ?", keyword, keyword)
+            end
+        end
+        reviews
     end
 end

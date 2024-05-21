@@ -1,0 +1,49 @@
+<div class="flex flex-col items-center justify-center w-full mt-8">
+    <div class="flex items-center space-x-2">
+        <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800"><%= @review.place.name %></p>
+    </div>
+    <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800 mt-4">住所: <%= @review.place.address %></p>
+    <% if @review.place.photo_url %>
+        <img src="<%= @review.place.photo_url %>" alt="<%= @review.place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
+    <% end %>
+
+    <div class="text-left text-xl flex items-center mt-4 text-sky-800">
+        <% if @review.user.avatar.present? %>
+        <%= image_tag @review.user.avatar.url, alt: @review.user.name, class: 'w-10 h-10 rounded-full mr-2' %>
+        <% else %>
+        <%= image_tag 'avatar.png', alt: @review.user.name, class: 'w-10 h-10 rounded-full mr-2' %>
+        <% end %>
+        <strong><%= @review.user.name %></strong>
+    </div>
+    
+    <p class="mt-4 mb-3 text-xl flex items-center text-sky-800">
+        評価:
+        <span class="flex ml-2">
+        <% 5.times do |i| %>
+            <% if i < @review.rating %>
+            <span class="text-yellow-400 text-2xl">&#9733;</span>
+            <% else %>
+            <span class="text-gray-300 text-2xl">&#9733;</span>
+            <% end %>
+        <% end %>
+        </span>
+    </p>
+
+    <div class="border-2 border-blue-500 bg-white rounded-md p-4 mt-3 w-3/4 max-w-lg h-48 text-center text-sky-800">
+        レビュー
+        <p class="text-lg text-left text-sky-800 mt-2"><%= @review.body %></p>
+    </div>
+    
+    <p class="mt-5 text-lg text-sky-800">投稿日: <%= @review.created_at.strftime("%Y年%m月%d日") %></p>
+
+    <% if @review.user == current_user %>
+        <div class="flex justify-center space-x-6 mt-4 mb-4 text-center">
+        <%= link_to '編集', edit_place_review_path(@review.place, @review), class: 'bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600' %>
+        <%= link_to '削除', place_review_path(@review.place, @review), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'bg-rose-500 text-white px-4 py-2 rounded hover:bg-rose-600' %>
+        </div>
+    <% end %>
+
+    <div class="flex justify-center mt-6 mb-12">
+        <%= link_to 'レビュー一覧へ戻る', reviews_path, class: 'bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring' %>
+    </div>
+</div>
