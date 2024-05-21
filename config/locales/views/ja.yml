@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      review: レビュー
     attributes:
       user:
         name: 名前
@@ -10,6 +11,9 @@ ja:
         avatar: アバター
         password_confirmation: パスワード（確認用）
         new_password: 新しいパスワード(6文字以上)
+      review:
+        body: レビュー
+        rating: 評価
     errors:
       format: "%{attribute}%{message}"
       models:
@@ -25,3 +29,10 @@ ja:
               too_short: は%{count}文字以上にしてください
             password_confirmation:
               confirmation: が一致していません
+        review:
+          attributes:
+            body:
+              blank: を入力してください
+            rating:
+              blank: を入力してください
+              inclusion: は１から５の範囲で入力してください
