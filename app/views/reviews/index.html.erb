@@ -56,16 +56,13 @@
               <% end %>
             </span>
           </p>
-          <%= render 'reviews/like_button', review: review, place: review.place, like_count: review.reviews_likes.count %>
+          <div class="button-container flex items-center space-x-2">
+            <%= render 'reviews/like_button', review: review, place: review.place, like_count: review.reviews_likes.count %>
+            <%= render 'reviews/favorite_button', review: review, place: review.place %>
+          </div>
           <div class="flex justify-center w-full mt-2">
             <%= link_to 'レビューページへ', place_review_path(review.place, review), class: "w-40 flex items-center justify-center py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-4" %>
           </div>
-          <% if review.user == current_user %>
-            <div class="flex justify-center space-x-6 mt-4 mb-4 text-center">
-              <%= link_to '編集', edit_place_review_path(review.place, review), class: 'bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600' %>
-              <%= link_to '削除', place_review_path(review.place, review), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'bg-rose-500 text-white px-4 py-2 rounded hover:bg-rose-600' %>
-            </div>
-          <% end %>
         </div>
       <% end %>
     </div>

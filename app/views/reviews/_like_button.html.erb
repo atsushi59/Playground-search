@@ -1,13 +1,13 @@
 <div id="like-button-<%= review.id %>">
   <% if ReviewsLike.exists?(user_id: current_user.id, review_id: review.id) %>
     <%= button_to place_review_reviews_like_path(place, review), method: :delete, class: 'like-button flex items-center mt-4', data: { turbo_frame: "like-button-#{review.id}" } do %>
-      <p class="ml-8 text-sky-800">いいね：</p>
+      <p class="text-sky-800 ml-4">いいね：</p>
       <i class="fa-solid fa-heart text-2xl text-red-500"></i>
       <p class="ml-1 text-lg"><%= like_count %></p>
     <% end %>
   <% else %>
     <%= button_to place_review_reviews_like_path(place, review), method: :post, class: 'like-button flex items-center mt-4', data: { turbo_frame: "like-button-#{review.id}" } do %>
-      <p class="ml-8 text-sky-800">いいね：</p>
+      <p class="text-sky-800 ml-4">いいね：</p>
       <i class="fa-regular fa-heart text-2xl text-gray-300"></i>
       <p class="ml-1 text-lg"><%= like_count %></p>
     <% end %>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :place_histories, only: [:create]
     resources :reviews, only: [:show, :new, :create, :edit, :update, :destroy]do
       resource :reviews_like, only: [:create, :destroy]
+      resource :review_favorite, only: [:create, :destroy]
     end
   end
   resources :place_favorites, only: [:index]
