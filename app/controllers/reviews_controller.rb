@@ -6,6 +6,10 @@ class ReviewsController < ApplicationController
 
     def index
         @places_with_reviews = Place.joins(:reviews).includes(:reviews).distinct.page(params[:page]).per(12)
+        @average_ratings = {}
+        @places_with_reviews.each do |place|
+            @average_ratings[place.id] = place.reviews.average(:rating).to_f.round(2)
+        end
         @reviews = @places_with_reviews.map(&:reviews).flatten
     end
     
