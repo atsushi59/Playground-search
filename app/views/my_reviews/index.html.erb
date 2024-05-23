@@ -1,0 +1,16 @@
+<p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mt-6 pb-4">マイレビュー一覧</p>
+
+<%= render 'reviews/search_form', url: my_reviews_path, prefecture_options: @prefecture_options, activity_type_options: @activity_type_options %>
+
+<% if @my_reviews.any? %>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-6 text-sky-800">
+        <div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        <% @my_reviews.each do |review| %>
+            <%= render 'reviews/review', review: review %>
+        <% end %>
+        </div>
+    </div>
+    <%= render 'shared/pagination', collection: @my_reviews %>
+    <% else %>
+    <p class="text-center text-gray-500">レビューが存在しません</p>
+<% end %>

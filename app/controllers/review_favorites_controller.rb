@@ -2,9 +2,10 @@ class ReviewFavoritesController < ReviewsController
     before_action :set_review, only: [:create, :destroy]
 
     def index
-        @favorite_reviews = current_user.review_favorites.includes(:review).map(&:review)
+        @favorite_reviews = Review.joins(:review_favorites).where(review_favorites: { user_id: current_user.id }).includes(:place).page(params[:page]).per(12)
         @favorite_reviews = filter_reviews(@favorite_reviews)
     end
+    
     
 
     def create

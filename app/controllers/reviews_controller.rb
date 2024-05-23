@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
     before_action :set_place, only: [:new, :create, :edit, :update, :show]
     before_action :set_review, only: [:edit, :update, :destroy, :show]
     before_action :set_activity_type_options, only:[:index]
+    before_action :set_prefecture_options, only: [:index]
 
     def index
         @reviews = filter_reviews(Review.includes(:user, :place).order(created_at: :desc)).page(params[:page]).per(12)
@@ -58,6 +59,10 @@ class ReviewsController < ApplicationController
 
     def set_activity_type_options
         @activity_type_options = Place.distinct.pluck(:activity_type).compact
+    end
+
+    def set_prefecture_options
+        @prefecture_options = prefecture_options
     end
 
     def filter_reviews(reviews)
