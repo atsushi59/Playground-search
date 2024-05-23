@@ -1,5 +1,5 @@
 <script>
-    document.addEventListener('turbo:load', function() {
+document.addEventListener('turbo:load', function() {
     const stars = document.querySelectorAll('.star-rating label');
     const currentRating = parseInt(document.querySelector('input[name="review[rating]"]:checked')?.value || '<%= @review.rating %>', 10);
 
@@ -26,5 +26,5 @@
         });
         });
     });
-    });
+});
 </script>
