@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :reviews_likes, dependent: :destroy
   has_many :review_favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :sns_credentials, dependent: :destroy
   mount_uploader :avatar, UserImageUploader
 
