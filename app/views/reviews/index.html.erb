@@ -32,33 +32,24 @@
               <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800 mt-4"><%= review.place.name %></p>
             </div>
             <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800 mt-4">住所: <%= review.place.address %></p>
+            <%= render 'reviews/favorite_button', review: review, place: review.place %>
             <% if review.place.photo_url %>
               <img src="<%= review.place.photo_url %>" alt="<%= review.place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
             <% end %>
           </div>
-          <div class="text-left flex items-center mt-4">
-            <% if review.user.avatar.present? %>
-              <%= image_tag review.user.avatar.url, alt: review.user.name, class: 'w-10 h-10 rounded-full mr-2' %>
-            <% else %>
-              <%= image_tag 'avatar.png', alt: review.user.name, class: 'w-10 h-10 rounded-full mr-2' %>
-            <% end %>
-            <strong><%= review.user.name %></strong>
-          </div>
-          <p class="mt-4 text-lg flex items-center">
-            評価:
-            <span class="flex ml-2">
-              <% 5.times do |i| %>
-                <% if i < review.rating %>
-                  <span class="text-yellow-400 text-2xl">&#9733;</span>
-                <% else %>
-                  <span class="text-gray-300 text-2xl">&#9733;</span>
+          <div class="flex items-center justify-center space-x-4 mt-4 text-lg">
+            <div class="flex items-center">
+              評価:
+              <span class="flex ml-2">
+                <% 5.times do |i| %>
+                  <% if i < review.rating %>
+                    <span class="text-yellow-400 text-2xl">&#9733;</span>
+                  <% else %>
+                    <span class="text-gray-300 text-2xl">&#9733;</span>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </span>
-          </p>
-          <div class="button-container flex items-center space-x-2">
-            <%= render 'reviews/like_button', review: review, place: review.place, like_count: review.reviews_likes.count %>
-            <%= render 'reviews/favorite_button', review: review, place: review.place %>
+              </span>
+            </div>
           </div>
           <div class="flex justify-center w-full mt-2">
             <%= link_to 'レビューページへ', place_review_path(review.place, review), class: "w-40 flex items-center justify-center py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-4" %>

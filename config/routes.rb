@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:show, :new, :create, :edit, :update, :destroy]do
       resource :reviews_like, only: [:create, :destroy]
       resource :review_favorite, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
   end
   resources :place_favorites, only: [:index]
