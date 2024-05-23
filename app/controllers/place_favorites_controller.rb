@@ -1,6 +1,5 @@
 class PlaceFavoritesController < PlacesController
-    include ActionView::RecordIdentifier
-
+        
     before_action :authenticate_user!
     before_action :set_place, only: [:create, :destroy]
     before_action :set_favorite, only: [:destroy]
@@ -11,20 +10,15 @@ class PlaceFavoritesController < PlacesController
     end
 
     def create
-        @favorite = current_user.places_favorites.create(place: @place)
-        respond_to do |format|
-            format.turbo_stream { render turbo_stream: turbo_stream_replace(@place) }
-            format.html { redirect_to @place }
-        end
+        @favorite = @place.places_favorites.new(user: current_user)
+        @favorite.save
+        render turbo_stream: turbo_stream.replace("favorite-button-#{@place.id}", partial: 'places/favorite_button', locals: { place: @place })
     end
 
     def destroy
-        @place = @favorite.place
+        @favorite = @place.places_favorites.find_by(user: current_user)
         @favorite.destroy
-        respond_to do |format|
-            format.turbo_stream { render turbo_stream: turbo_stream_replace(@place) }
-            format.html { redirect_to @place }
-        end
+        render turbo_stream: turbo_stream.replace("favorite-button-#{@place.id}", partial: 'places/favorite_button', locals: { place: @place })
     end
 
     private
@@ -35,9 +29,5 @@ class PlaceFavoritesController < PlacesController
 
     def set_favorite
         @favorite = current_user.places_favorites.find(params[:id])
-    end
-
-    def turbo_stream_replace(place)
-        turbo_stream.replace(dom_id(place, :favorite_button), partial: 'shared/favorite_button', locals: { place: place })
     end
 end

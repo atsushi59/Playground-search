@@ -40,7 +40,7 @@
                   <div class="favorite-button-container my-1">
                     <% place = Place.find_by(name: place_detail['name'], address: place_detail['formatted_address']) %>
                     <% if place.present? %>
-                      <%= render partial: 'shared/favorite_button', locals: { place: place } %>
+                      <%= render partial: 'places/favorite_button', locals: { place: place } %>
                     <% else %>
                       <%= link_to place_place_favorites_path(place_id: place_detail['place_id']), method: :post, data: { turbo_method: :post }, class: "text-gray-500" do %>
                         <%= image_tag('un_favorite.png', alt: 'Favorite', class: 'h-6 w-6 sm:h-8 sm:w-8 mt-2 mb-2') %>
