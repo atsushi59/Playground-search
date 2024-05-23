@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :place_favorites, only: [:index]
   resources :place_histories, only: [:index]
   resources :reviews, only: [:index]
+  resources :review_favorites, only: [:index]
   get 'index', to: 'searches#index'
   post 'search', to: 'searches#search'
   get '/terms_of_service', to: 'static_pages#terms_of_service'

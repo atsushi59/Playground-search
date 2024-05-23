@@ -1,5 +1,11 @@
-class ReviewFavoritesController < ApplicationController
-    before_action :set_review
+class ReviewFavoritesController < ReviewsController
+    before_action :set_review, only: [:create, :destroy]
+
+    def index
+        @favorite_reviews = current_user.review_favorites.includes(:review).map(&:review)
+        @favorite_reviews = filter_reviews(@favorite_reviews)
+    end
+    
 
     def create
         @review_favorite = @review.review_favorites.new(user: current_user) 

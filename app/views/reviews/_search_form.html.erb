@@ -1,0 +1,21 @@
+<div class="text-center mt-8 text-sky-800 overflow-x-auto">
+    <div class="inline-flex space-x-6">
+        <%= form_with url: reviews_path, method: :get, class: "flex flex-nowrap justify-center items-center space-x-4 w-full", local: true do |f| %>
+        <div class="flex flex-col mb-4 text-xs md:text-sm lg:text-lg xl:text-lg w-32 md:w-48">
+            <%= f.label :address_cont, "都道府県", class: "mb-2" %>
+            <%= f.select :address_cont, options_for_select(prefecture_options), { prompt: '選択してください' }, class: "p-2 md:p-3" %>
+        </div>
+        <div class="flex flex-col mb-4 text-xs md:text-sm lg:text-lg xl:text-lg w-32 md:w-48">
+            <%= f.label :activity_type_eq, "活動タイプ", class: "mb-2" %>
+            <%= f.select :activity_type_eq, options_for_select(@activity_type_options), { prompt: '選択してください' }, class: "p-2 md:p-3" %>
+        </div>
+        <div class="flex flex-col mb-4 text-xs md:text-sm lg:text-lg xl:text-lg w-32 md:w-48">
+            <%= f.label :keyword, "フリーテキスト", class: "mb-2" %>
+            <%= f.text_field :keyword, class: "p-2 md:p-3" %>
+        </div>
+        <div class="flex items-end mt-2 md:mt-5 pl-2 md:pl-4">
+            <%= f.submit "検索", class: "bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring p-2 md:p-3 text-xs md:text-sm lg:text-lg xl:text-lg" %>
+        </div>
+        <% end %>
+    </div>
+</div>
