@@ -1,70 +1,72 @@
 <div class="flex flex-col items-center justify-center w-full mt-8">
     <div class="flex items-center space-x-2">
-        <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800"><%= @review.place.name %></p>
+        <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800"><%= @place.name %></p>
     </div>
-    <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800 mt-4">住所: <%= @review.place.address %></p>
+    <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800 mt-4">住所: <%= @place.address %></p>
     <div class="flex items-center justify-center space-x-4 mt-4 text-lg">
         <%= render 'reviews/favorite_button', review: @review, place: @place %>
     </div>
-    <% if @review.place.photo_url %>
-        <img src="<%= @review.place.photo_url %>" alt="<%= @review.place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
+    <% if @place.photo_url %>
+        <img src="<%= @place.photo_url %>" alt="<%= @place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
     <% end %>
 
-    <div class="border-2 border-blue-500 bg-white rounded-md p-4 mt-3 w-3/4 max-w-lg text-center text-sky-800 relative">
-        <div class="flex items-center justify-center space-x-4">
-        <% if @review.user.avatar.present? %>
-            <%= image_tag @review.user.avatar.url, alt: @review.user.name, class: 'w-8 h-8 rounded-full' %>
-        <% else %>
-            <%= image_tag 'avatar.png', alt: @review.user.name, class: 'w-8 h-8 rounded-full' %>
-        <% end %>
-        <strong class="text-lg"><%= @review.user.name %></strong>
-
-        <p class="text-lg flex items-center text-sky-800">
-            評価:
-            <span class="flex ml-2">
-            <% 5.times do |i| %>
-                <% if i < @review.rating %>
-                <span class="text-yellow-400 text-2xl">&#9733;</span>
-                <% else %>
-                <span class="text-gray-300 text-2xl">&#9733;</span>
-                <% end %>
+    <% @reviews.each do |review| %>
+        <div class="border-2 border-blue-500 bg-white rounded-md p-4 mt-3 w-3/4 max-w-lg text-center text-sky-800 relative">
+            <div class="flex items-center justify-center space-x-4">
+            <% if review.user.avatar.present? %>
+                <%= image_tag review.user.avatar.url, alt: review.user.name, class: 'w-8 h-8 rounded-full' %>
+            <% else %>
+                <%= image_tag 'avatar.png', alt: review.user.name, class: 'w-8 h-8 rounded-full' %>
             <% end %>
-            </span>
-        </p>
-        <%= render 'reviews/like_button', review: @review, place: @place, like_count: @review.reviews_likes.count %>
-        <p class='text-lg'>コメント:</p>
-        <button class="p-0 bg-transparent border-none" onclick="my_modal_1.showModal()">
-            <i class="fa-regular fa-comment text-xl"></i>
-        </button>
-        </div>
+            <strong class="text-lg"><%= review.user.name %></strong>
 
-        <p class="text-lg text-left text-sky-800 mt-8"><%= @review.body %></p>
-
-        <% if @review.comments.any? %>
-        <div class="relative">
-            <div class="dropdown dropdown-end absolute bottom-2 right-2 w-full">
-            <div class="flex justify-end">
-                <div tabindex="0" role="button" class="m-1 p-2 text-lime-500 bg-transparent border-none text-2xl absolute bottom-0 right-0">▼</div>
-            </div>
-            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full">
-                <% @review.comments.each do |comment| %>
-                <%= render 'comments/comment', comment: comment %>
+            <p class="text-lg flex items-center text-sky-800">
+                評価:
+                <span class="flex ml-2">
+                <% 5.times do |i| %>
+                    <% if i < review.rating %>
+                    <span class="text-yellow-400 text-2xl">&#9733;</span>
+                    <% else %>
+                    <span class="text-gray-300 text-2xl">&#9733;</span>
+                    <% end %>
                 <% end %>
-                <li class="flex justify-center bg-transparent hover:bg-transparent w-full">
-                <button class="btn bg-rose-500 text-white hover:bg-rose-600 text-lg w-1/4 mx-auto" onclick="this.closest('.dropdown').querySelector('.dropdown-content').classList.toggle('hidden')">閉じる</button>
-                </li>
-            </ul>
+                </span>
+            </p>
+            <%= render 'reviews/like_button', review: review, place: @place, like_count: review.reviews_likes.count %>
+            <p class='text-lg'>コメント:</p>
+            <button class="p-0 bg-transparent border-none" onclick="my_modal_1.showModal()">
+                <i class="fa-regular fa-comment text-xl"></i>
+            </button>
             </div>
+
+            <p class="text-lg text-left text-sky-800 mt-8"><%= review.body %></p>
+
+            <% if review.comments.any? %>
+            <div class="relative">
+                <div class="dropdown dropdown-end absolute bottom-2 right-2 w-full">
+                <div class="flex justify-end">
+                    <div tabindex="0" role="button" class="m-1 p-2 text-lime-500 bg-transparent border-none text-2xl absolute bottom-0 right-0">▼</div>
+                </div>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full">
+                    <% review.comments.each do |comment| %>
+                    <%= render 'comments/comment', comment: comment %>
+                    <% end %>
+                    <li class="flex justify-center bg-transparent hover:bg-transparent w-full">
+                    <button class="btn bg-rose-500 text-white hover:bg-rose-600 text-lg w-1/4 mx-auto" onclick="this.closest('.dropdown').querySelector('.dropdown-content').classList.toggle('hidden')">閉じる</button>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        <% end %>
+
+        <% if review.user == current_user %>
+            <div class="flex justify-center space-x-6 mt-4 mb-4 text-center">
+                <%= link_to '編集', edit_place_review_path(review.place, review), class: 'bg-green-500 text-white px-2 py-2 rounded hover:bg-green-600' %>
+                <%= link_to '削除', place_review_path(review.place, review), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'bg-rose-500 text-white px-2 py-2 rounded hover:bg-rose-600' %>
+            </div>
+        <% end %>
         </div>
     <% end %>
-
-    <% if @review.user == current_user %>
-        <div class="flex justify-center space-x-6 mt-4 mb-4 text-center">
-            <%= link_to '編集', edit_place_review_path(@review.place, @review), class: 'bg-green-500 text-white px-2 py-2 rounded hover:bg-green-600' %>
-            <%= link_to '削除', place_review_path(@review.place, @review), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'bg-rose-500 text-white px-2 py-2 rounded hover:bg-rose-600' %>
-        </div>
-        <% end %>
-    </div>
 
     <dialog id="my_modal_1" class="modal">
         <div class="modal-box text-center">

@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
     before_action :set_prefecture_options, only: [:index]
 
     def index
-        @reviews = filter_reviews(Review.includes(:user, :place).order(created_at: :desc)).page(params[:page]).per(12)
+        @places_with_reviews = Place.joins(:reviews).includes(:reviews).distinct.page(params[:page]).per(12)
+        @reviews = @places_with_reviews.map(&:reviews).flatten
     end
     
     def new
@@ -17,7 +18,7 @@ class ReviewsController < ApplicationController
         @review.user = current_user
     
         if @review.save
-            redirect_to reviews_path, notice: 'レビューが投稿されました'
+            redirect_to place_review_path(@place, @review), notice: 'レビューが投稿されました'
         else
             flash.now[:alert] = 'レビューの投稿に失敗しました'
             render :new
@@ -25,14 +26,16 @@ class ReviewsController < ApplicationController
     end
 
     def show
-    end    
+        @place = Place.find(params[:place_id])
+        @reviews = @place.reviews
+    end 
 
     def edit
     end
 
     def update
         if @review.update(review_params)
-            redirect_to reviews_path, notice: 'レビューが更新されました'
+            redirect_to place_review_path(@place, @review), notice: 'レビューが更新されました'
         else
             render :edit, alert: 'レビューの更新に失敗しました'
         end
