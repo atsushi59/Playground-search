@@ -1,6 +1,6 @@
 <p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mt-6 pb-4">お気に入りレビュー一覧</p>
 
-<%= render 'reviews/search_form', prefecture_options: prefecture_options, activity_type_options: @activity_type_options %>
+<%= render 'reviews/search_form', url: review_favorites_path, prefecture_options: @prefecture_options, activity_type_options: @activity_type_options %>
 
 <% if @favorite_reviews.any? %>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-6 text-sky-800">
@@ -10,6 +10,7 @@
         <% end %>
         </div>
     </div>
+    <%= render 'shared/pagination', collection: @favorite_reviews %>
     <% else %>
     <p class="text-center text-sky-800">お気に入りのレビューはまだありません。</p>
 <% end %>
