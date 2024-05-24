@@ -32,7 +32,7 @@ class ReviewsController < ApplicationController
 
   def show
     @place = Place.find(params[:place_id])
-    @reviews = @place.reviews
+    @reviews = @place.reviews.order(created_at: :desc)
   end
 
   def edit; end

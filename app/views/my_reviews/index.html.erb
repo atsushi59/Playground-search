@@ -9,7 +9,7 @@
         <% @my_reviews.each do |place| %>
             <% unless displayed_place_names.include?(place.name) %>
             <% review = place.reviews.first %>
-            <div class="shadow-xl rounded-lg bg-white p-4 border border-gray-200">
+            <div class="shadow-xl rounded-lg bg-white p-4 mx-8 pt-4 border border-gray-200 mb-8">
                 <div class="flex flex-col items-center justify-center w-full">
                 <div class="flex items-center space-x-2">
                     <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800 mt-4"><%= place.name %></p>
