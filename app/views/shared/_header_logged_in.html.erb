@@ -1,45 +1,56 @@
 <header class="font-mono w-full navbar bg-sky-50 z-50">
     <div class="flex justify-between items-center w-full">
         <div class="flex-1 px-2 lg:flex-none">
-            <%= link_to 'あそびばさがそ', root_path, class: "font-sans text-base md:text-xl lg:text-xl xl:text-xl font-bold text-lime-500 hover:bg-base-100 focus:ring-4 focus:ring-gray-300 rounded-lg px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
+        <%= link_to 'あそびばさがそ', root_path, class: "font-sans text-base md:text-xl lg:text-xl xl:text-xl font-bold text-lime-500 hover:bg-base-100 focus:ring-4 focus:ring-gray-300 rounded-lg px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %>
         </div>
-        <div class="flex justify-end items-center">
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="text-sky-800 hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-4 focus:outline-none">マイロケーション</div>
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><%= link_to '過去の検索一覧', places_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                    <li><%= link_to '行った場所', place_histories_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                    <li><%= link_to 'お気に入り', place_favorites_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                </ul>
+        <div class="flex items-center space-x-4">
+        <button class="btn btn-ghost btn-circle hover:bg-base-100 focus:ring-4 focus:ring-gray-300 text-sky-800 font-medium rounded-full text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 focus:outline-none mr-2">
+            <div class="indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span class="badge badge-xs badge-primary indicator-item"></span>
             </div>
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="text-sky-800 hover:bg-base-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-4 focus:outline-none">レビュー</div>
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><%= link_to 'レビュー一覧', reviews_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                    <li><%= link_to 'マイレビュー一覧', my_reviews_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                    <li><%= link_to 'お気に入り', review_favorites_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                </ul>
+        </button>
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar mr-2">
+            <div class="w-24 rounded-full ring ring-lime-500 ring-offset-2">
+                <%= image_tag current_user.avatar_url, class: "w-full h-full object-cover rounded-full" %>
             </div>
-            <button class="btn btn-ghost btn-circle mr-5 hover:bg-base-100 focus:ring-4 focus:ring-gray-300 text-sky-800 font-medium rounded-full text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 focus:outline-none">
-                <div class="indicator">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                    </svg>
-                    <span class="badge badge-xs badge-primary indicator-item"></span>
-                </div>
-            </button>
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar mr-2">
-                    <div class="w-24 rounded-full ring ring-lime-500 ring-offset-2">
-                        <%= image_tag current_user.avatar_url, class: "w-full h-full object-cover rounded-full" %>
-                    </div>
-                </div>
-                <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                    <li><%= link_to 'マイページ', profiles_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                    <li><%= link_to 'マイページ編集', edit_profiles_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                    <li><%= link_to 'サインアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-2 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" %></li>
-                </ul>
             </div>
+            <ul class="menu bg-white rounded-box mt-2 z-[1] p-2 shadow dropdown-content flex flex-col">
+            <li class="relative">
+                <details class="dropdown">
+                <summary class="dropdown-summary cursor-pointer text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-4 py-2 focus:outline-none whitespace-nowrap">ユーザー</summary>
+                <ul class="p-2 bg-white rounded-box mt-2 flex flex-col">
+                    <li><%= link_to 'マイページ', profiles_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                    <li><%= link_to 'マイページ編集', edit_profiles_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                    <li><%= link_to 'サインアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                </ul>
+                </details>
+            </li>
+            <li class="relative">
+                <details class="dropdown">
+                <summary class="dropdown-summary cursor-pointer text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-4 py-2 focus:outline-none whitespace-nowrap">マイロケーション</summary>
+                <ul class="p-2 bg-white rounded-box mt-2 flex flex-col">
+                    <li><%= link_to '過去の検索一覧', places_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                    <li><%= link_to '行った場所', place_histories_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                    <li><%= link_to 'お気に入りの場所', place_favorites_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                </ul>
+                </details>
+            </li>
+            <li class="relative">
+                <details class="dropdown">
+                <summary class="dropdown-summary cursor-pointer text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-4 py-2 focus:outline-none whitespace-nowrap">レビュー</summary>
+                <ul class="p-2 bg-white rounded-box mt-2 flex flex-col">
+                    <li><%= link_to 'レビュー一覧', reviews_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                    <li><%= link_to 'マイレビュー一覧', my_reviews_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                    <li><%= link_to 'お気に入りのレビュー', review_favorites_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
+                </ul>
+                </details>
+            </li>
+            </ul>
         </div>
-    </div>  
+        </div>
+    </div>
 </header>
