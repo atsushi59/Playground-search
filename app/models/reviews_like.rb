@@ -1,6 +1,8 @@
-class ReviewsLike < ApplicationRecord
-    belongs_to :user
-    belongs_to :review
+# frozen_string_literal: true
 
-    validates :user_id, uniqueness: { scope: :review_id }
+class ReviewsLike < ApplicationRecord
+  belongs_to :user
+  belongs_to :review
+
+  validates :user_id, uniqueness: { scope: :review_id }
 end

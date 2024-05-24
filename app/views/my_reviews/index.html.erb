@@ -5,12 +5,31 @@
 <% if @my_reviews.any? %>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-6 text-sky-800">
         <div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-        <% @my_reviews.each do |review| %>
-            <%= render 'reviews/review', review: review %>
+        <% displayed_place_names = [] %>
+        <% @my_reviews.each do |place| %>
+            <% unless displayed_place_names.include?(place.name) %>
+            <% review = place.reviews.first %>
+            <div class="shadow-xl rounded-lg bg-white p-4 border border-gray-200">
+                <div class="flex flex-col items-center justify-center w-full">
+                <div class="flex items-center space-x-2">
+                    <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800 mt-4"><%= place.name %></p>
+                </div>
+                <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800 mt-4">住所: <%= place.address %></p>
+                <%= render 'reviews/favorite_button', review: review, place: place %>
+                <% if place.photo_url %>
+                    <img src="<%= place.photo_url %>" alt="<%= place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
+                <% end %>
+                </div>
+                <div class="flex justify-center w-full mt-2">
+                <%= link_to 'レビューページへ', place_review_path(place, review), class: "w-40 flex items-center justify-center py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-4" %>
+                </div>
+            </div>
+            <% displayed_place_names << place.name %>
+            <% end %>
         <% end %>
         </div>
+        <%= render 'shared/pagination', collection: @my_reviews %>
     </div>
-    <%= render 'shared/pagination', collection: @my_reviews %>
     <% else %>
-    <p class="text-center text-gray-500">レビューが存在しません</p>
+    <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-sky-800 mt-8">レビューが存在しません</p>
 <% end %>

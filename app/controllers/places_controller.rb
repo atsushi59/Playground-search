@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlacesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_activity_type_options, only: [:index]
@@ -13,15 +15,23 @@ class PlacesController < ApplicationController
   end
 
   def filter_places(places)
-    if params[:address_cont].present? || params[:activity_type_eq].present? || params[:keyword].present?
-      places = places.where("address LIKE ?", "%#{params[:address_cont]}%") if params[:address_cont].present?
-      places = places.where("activity_type = ?", params[:activity_type_eq]) if params[:activity_type_eq].present?
-      if params[:keyword].present?
-        keyword = "%#{params[:keyword]}%"
-        places = places.where("name LIKE ? OR address LIKE ?", keyword, keyword)
-      end
-    end
+    places = filter_by_address(places) if params[:address_cont].present?
+    places = filter_by_activity_type(places) if params[:activity_type_eq].present?
+    places = filter_by_keyword(places) if params[:keyword].present?
     places.order(id: :desc).page(params[:page]).per(10)
+  end
+  
+  def filter_by_address(places)
+    places.where('address LIKE ?', "%#{params[:address_cont]}%")
+  end
+  
+  def filter_by_activity_type(places)
+    places.where('activity_type = ?', params[:activity_type_eq])
+  end
+  
+  def filter_by_keyword(places)
+    keyword = "%#{params[:keyword]}%"
+    places.where('name LIKE ? OR address LIKE ?', keyword, keyword)
   end
 
   def places_params

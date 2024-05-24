@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_review
   before_action :set_place
   before_action :set_comment, only: [:destroy]

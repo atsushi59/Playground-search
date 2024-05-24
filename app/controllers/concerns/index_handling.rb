@@ -53,7 +53,7 @@ module IndexHandling
 
   def add_place_to_results(place_detail, travel_time_minutes, opening_hours, photo_reference, formatted_address)
     place_detail['formatted_address'] = formatted_address
-    return unless travel_time_minutes && travel_time_minutes.is_a?(Integer) && travel_time_minutes <= session[:selected_time].to_i
+    return unless travel_time_minutes.is_a?(Integer) && travel_time_minutes <= session[:selected_time].to_i
 
     @places_details.push(place_detail.merge('today_opening_hours' => opening_hours,
                                             'photo_url' => photo_reference))
@@ -61,6 +61,7 @@ module IndexHandling
 
   def save_search_result(place_detail, opening_hours, photo_reference)
     return unless user_signed_in?
+
     Place.find_or_create_by(name: place_detail['name'],
                             address: place_detail['formatted_address']) do |new_place|
       new_place.website = place_detail['website']
