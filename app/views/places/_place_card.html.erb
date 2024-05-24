@@ -5,7 +5,7 @@
         </div>
         <p class="text-center text-sm md:text-base lg:text-base xl:text-base my-1 text-sky-800">住所: <%= place.address %></p>
         <div class='mb-2'>
-        <%= render 'places/favorite_button', place: place %>
+        <%= render 'shared/favorite_button', place: place %>
         </div>
         <% if place.photo_url %>
         <img src="<%= place.photo_url %>" alt="<%= place.name %>" class="mx-auto w-80 h-80 my-1">

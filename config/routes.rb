@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   resources :places do
     resources :place_favorites, only: %i[create destroy]
     resources :place_histories, only: [:create]
-    resources :reviews, only: [:show, :new, :create, :edit, :update, :destroy]do
-      resource :reviews_like, only: [:create, :destroy]
-      resource :review_favorite, only: [:create, :destroy]
-      resources :comments, only: [:create, :destroy]
+    resources :reviews, only: %i[show new create edit update destroy] do
+      resource :reviews_like, only: %i[create destroy]
+      resource :review_favorite, only: %i[create destroy]
+      resources :comments, only: %i[create destroy]
     end
   end
   resources :place_favorites, only: [:index]
@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   post 'search', to: 'searches#search'
   get '/terms_of_service', to: 'static_pages#terms_of_service'
   get '/privacy_policy', to: 'static_pages#privacy_policy'
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development? 
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

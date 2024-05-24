@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateReviewsLikes < ActiveRecord::Migration[7.1]
   def change
     create_table :reviews_likes do |t|

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class SearchesController < ApplicationController
   include SearchHandling
@@ -70,23 +71,24 @@ class SearchesController < ApplicationController
 
   def set_search_limit
     return unless Rails.env.production?
+
     ip_address = client_ip
     today_search_count = count_today_searches(ip_address)
-    
+
     if today_search_count >= 5
-      flash[:alert] = "本日の検索上限を超えました"
+      flash[:alert] = '本日の検索上限を超えました'
       redirect_to root_path and return
     end
-  
-    if today_search_count < 5
-      SearchLog.create(ip_address: ip_address)
-    end
-  end  
+
+    return unless today_search_count < 5
+
+    SearchLog.create(ip_address:)
+  end
 
   def count_today_searches(ip_address)
-    SearchLog.where(ip_address: ip_address)
-             .where("created_at >= ?", Time.zone.now.beginning_of_day)
-             .where("created_at <= ?", Time.zone.now.end_of_day)
+    SearchLog.where(ip_address:)
+             .where('created_at >= ?', Time.zone.now.beginning_of_day)
+             .where('created_at <= ?', Time.zone.now.end_of_day)
              .count
   end
 end
