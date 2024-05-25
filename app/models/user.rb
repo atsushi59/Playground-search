@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :reviews_likes, dependent: :destroy
   has_many :review_favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications_as_visitor, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :notifications_as_visited, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_many :sns_credentials, dependent: :destroy
   mount_uploader :avatar, UserImageUploader
 

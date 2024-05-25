@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_22_040937) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_25_150233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_040937) do
     t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["review_id"], name: "index_comments_on_review_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.bigint "review_id", null: false
+    t.bigint "comment_id", null: false
+    t.string "notification_type", null: false
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["review_id"], name: "index_notifications_on_review_id"
   end
 
   create_table "place_histories", force: :cascade do |t|
@@ -149,6 +162,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_040937) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "reviews"
   add_foreign_key "comments", "users"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "reviews"
   add_foreign_key "place_histories", "places"
   add_foreign_key "place_histories", "users"
   add_foreign_key "places", "users"
