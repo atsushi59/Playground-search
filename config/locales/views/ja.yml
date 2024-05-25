@@ -12,6 +12,7 @@ ja:
         password_confirmation: パスワード（確認用）
         new_password: 新しいパスワード(6文字以上)
       review:
+        user_id: ユーザー 
         body: レビュー
         rating: 評価
     errors:
@@ -36,3 +37,5 @@ ja:
             rating:
               blank: を入力してください
               inclusion: は１から５の範囲で入力してください
+            user_id:
+              taken: は同じ場所に複数のレビューを投稿できません

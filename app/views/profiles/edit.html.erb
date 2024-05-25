@@ -2,7 +2,7 @@
 <div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-sm sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4 mt-4 pb-4">
     <div style="display: flex; justify-content: center; align-items: center; min-height: 50vh;">
         <div class="text-center pb-4">
-            <%= form_with model: @user, url: profiles_path, method: :put, local: true do |f| %>
+            <%= form_with model: @user, url: profiles_path, method: :put do |f| %>
                 <div class="w-full">
                     <div class="flex justify-between items-center text-center pb-8 pt-6">
                         <div class="text-xl font-medium text-sky-800 pl-10">氏名</div>

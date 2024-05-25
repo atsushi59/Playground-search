@@ -42,22 +42,23 @@
         <p class="text-lg text-left text-sky-800 mt-8"><%= review.body %></p>
 
         <% if review.comments.any? %>
-            <div class="relative">
-            <div class="dropdown dropdown-end absolute bottom-2 right-2 w-full">
-                <div class="flex justify-end">
-                <div tabindex="0" role="button" class="m-1 p-2 text-lime-500 bg-transparent border-none text-2xl absolute bottom-0 right-0">▼</div>
-                </div>
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full">
+        <div class="relative">
+            <div class="dropdown dropdown-end absolute bottom-0 right-0 w-full">
+            <div class="flex justify-end">
+                <div tabindex="0" role="button" class="m-2 p-2 text-lime-500 bg-transparent border-none text-2xl">▼</div>
+            </div>
+            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full">
                 <% review.comments.each do |comment| %>
-                    <%= render 'comments/comment', comment: comment %>
+                <%= render 'comments/comment', comment: comment %>
                 <% end %>
                 <li class="flex justify-center bg-transparent hover:bg-transparent w-full">
-                    <button class="btn bg-rose-500 text-white hover:bg-rose-600 text-lg w-1/4 mx-auto text-xs md:text-base" onclick="this.closest('.dropdown').querySelector('.dropdown-content').classList.toggle('hidden')">閉じる</button>
+                <button class="btn bg-rose-500 text-white hover:bg-rose-600 w-1/5 mx-auto text-xs md:text-base" onclick="this.closest('.dropdown').querySelector('.dropdown-content').classList.toggle('hidden')">閉じる</button>
                 </li>
-                </ul>
+            </ul>
             </div>
-            </div>
+        </div>
         <% end %>
+
 
         <% if review.user == current_user %>
             <div class="flex justify-center space-x-6 mt-4 mb-4 text-center">

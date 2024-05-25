@@ -39,7 +39,7 @@
     ②検索結果から行きたい場所を選択しここに行くを押します
   </p>
   <div class="flex justify-center items-center pt-4">
-    <%= image_tag 'answer.png', class: "h-auto w-auto max-w-full max-h-60 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
+    <%= image_tag 'answers.png', class: "h-auto w-auto max-w-full max-h-60 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
   </div>
 </div>
 
@@ -58,6 +58,44 @@
 
 <p class="text-sky-800 text-xl md:text-3xl lg:text-3xl xl:text-3xl text-center mt-16">＜ログインすると＞</p>
 
-<p class="text-sky-800 text-lg md:text-xl lg:text-xl xl:text-xl text-center mt-16 mb-16">本リリース後に下記を追記します</p>
+<div class="shadow-xl rounded-lg bg-white items-center border border-gray-300 my-12 mx-12 md:mx-24 lg:mx-auto max-w-3xl px-4 sm:px-6">
+  <p class="text-sky-800 text-md sm:text-lg md:text-xl lg:text-2xl text-center my-3 sm:my-4 md:my-6">
+    検索結果にお気に入りができます
+  </p>
+  <div class="flex justify-center items-center pt-4">
+    <%= image_tag 'bookmark.png', class: "h-auto w-auto max-w-full max-h-60 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
+  </div>
+</div>
+
+<div class="shadow-xl rounded-lg bg-white items-center border border-gray-300 my-12 mx-12 md:mx-24 lg:mx-auto max-w-3xl px-4 sm:px-6">
+  <p class="text-sky-800 text-md sm:text-lg md:text-xl lg:text-2xl text-center my-3 sm:my-4 md:my-6">
+    過去の検索結果一覧、お気に入りの場所一覧、行った場所の履歴を見ることができます
+  </p>
+  <div class="flex justify-center items-center pt-4">
+    <%= image_tag 'bookmark_place.png', class: "h-auto w-auto max-w-full max-h-60 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
+  </div>
+</div>
+
+<div class="shadow-xl rounded-lg bg-white items-center border border-gray-300 my-12 mx-12 md:mx-24 lg:mx-auto max-w-3xl px-4 sm:px-6">
+  <p class="text-sky-800 text-md sm:text-lg md:text-xl lg:text-2xl text-center my-3 sm:my-4 md:my-6">
+    レビュー一覧を見れ、お気に入りができます
+  </p>
+  <div class="flex justify-center items-center pt-4">
+    <%= image_tag 'review.png', class: "h-auto w-auto max-w-full max-h-60 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
+  </div>
+</div>
+
+<div class="shadow-xl rounded-lg bg-white items-center border border-gray-300 my-12 mx-12 md:mx-24 lg:mx-auto max-w-3xl px-4 sm:px-6">
+  <p class="text-sky-800 text-md sm:text-lg md:text-xl lg:text-2xl text-center my-3 sm:my-4 md:my-6">
+    行った場所のレビューが書け、コメントやいいねを貰えます
+  </p>
+  <div class="flex justify-center items-center pt-4">
+    <%= image_tag 'comment.png', class: "h-auto w-auto max-w-full max-h-60 sm:max-h-80 md:max-h-100 lg:max-h-120 mb-4 sm:mb-6 md:mb-8" %>
+  </div>
+</div>
+
+<div class="mb-16">
+  <%= render 'shared/search', button_text: 'ここから始める' %>
+</div>
 
 <%= render 'shared/location_script' %>

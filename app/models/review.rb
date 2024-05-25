@@ -8,4 +8,5 @@ class Review < ApplicationRecord
   has_many :comments, dependent: :destroy
   validates :body, presence: true
   validates :rating, presence: true, inclusion: { in: 1..5 }
+  validates :user_id, uniqueness: { scope: :place_id }
 end
