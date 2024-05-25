@@ -10,7 +10,7 @@
         <% if place.photo_url %>
         <img src="<%= place.photo_url %>" alt="<%= place.name %>" class="mx-auto w-80 h-80 my-1">
         <% end %>
-        <%= form_with url: place_place_histories_path(place_id: place.id), method: :post, local: true, data: { turbo: false }, html: { class: "new_tab_form" } do %>
+        <%= form_with url: place_place_histories_path(place_id: place.id), method: :post, data: { turbo: false }, html: { class: "new_tab_form" } do %>
         <%= hidden_field_tag :destination, "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place.address)}" %>
         <%= submit_tag 'ここに行く', class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
         <% end %>

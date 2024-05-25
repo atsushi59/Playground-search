@@ -7,31 +7,31 @@
 <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex justify-center items-center" style="z-index: 1000;">
     <div class="bg-white p-6 rounded shadow-lg mx-auto relative sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl max-h-[90vh] overflow-auto">
         <button onclick="closeModal()" class="absolute top-0 right-0 mt-2 mr-2 text-3xl font-semibold leading-none">&times;</button>
-        <%= form_with url: search_path, method: :post, id: 'location_form' do |form| %>
+        <%= form_with url: search_path, method: :post, id: 'location_form' do |f| %>
             <div class="text-center p-10 text-base">
                 <div class="mb-4">
-                    <%= form.label :selected_transport, '交通手段', class: "block text-sm font-medium text-sky-800" %>
-                    <%= form.select :selected_transport, [['車', '車'], ['公共交通機関', '公共交通機関']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
+                    <%= f.label :selected_transport, '交通手段', class: "block text-sm font-medium text-sky-800" %>
+                    <%= f.select :selected_transport, [['車', '車'], ['公共交通機関', '公共交通機関']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
                 </div>
 
                 <div class="mb-4">
-                    <%= form.label :selected_time, '所要時間', class: "block text-sm font-medium text-sky-800" %>
-                    <%= form.select :selected_time, [['30分', '45分以内'], ['1時間', '75分以下45分以上'], ['1時間30分', '105分以下75分以上'], ['2時間', '135分以下105分以上']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
+                    <%= f.label :selected_time, '所要時間', class: "block text-sm font-medium text-sky-800" %>
+                    <%= f.select :selected_time, [['30分', '45分以内'], ['1時間', '75分以下45分以上'], ['1時間30分', '105分以下75分以上'], ['2時間', '135分以下105分以上']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
                 </div>
 
                 <div class="mb-4">
-                    <%= form.label :selected_age, '子供の年齢', class: "block text-sm font-medium text-sky-800" %>
-                    <%= form.select :selected_age, [['3歳以下', '3歳以下'], ['6歳以下', '6歳以下'], ['12歳以下', '12歳以下']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
+                    <%= f.label :selected_age, '子供の年齢', class: "block text-sm font-medium text-sky-800" %>
+                    <%= f.select :selected_age, [['3歳以下', '3歳以下'], ['6歳以下', '6歳以下'], ['12歳以下', '12歳以下']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
                 </div>
 
                 <div class="mb-4">
-                    <%= form.label :selected_activity, '遊戯施設', class: "block text-sm font-medium text-sky-800" %>
-                    <%= form.select :selected_activity, [['公園', '公園'], ['室内遊び場', '室内遊び場'], ['レジャー施設', 'レジャー施設']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
+                    <%= f.label :selected_activity, '遊戯施設', class: "block text-sm font-medium text-sky-800" %>
+                    <%= f.select :selected_activity, [['公園', '公園'], ['室内遊び場', '室内遊び場'], ['レジャー施設', 'レジャー施設']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
                 </div>
 
                 <div class="text-center"><br>
-                    <%= form.hidden_field :address, id: 'hidden_address' %>
-                    <%= form.submit '検索', class: "px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" %>
+                    <%= f.hidden_field :address, id: 'hidden_address' %>
+                    <%= f.submit '検索', class: "px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring" %>
                 </div>
 
                 <p class="text-center text-lg text-rose-800 mt-8">※ 1日の検索を3回までに制限しております</p>

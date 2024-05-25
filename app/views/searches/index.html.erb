@@ -40,7 +40,7 @@
                   <div class="favorite-button-container my-1">
                     <% place = Place.find_by(name: place_detail['name'], address: place_detail['formatted_address']) %>
                     <% if place.present? %>
-                      <%= render partial: 'places/favorite_button', locals: { place: place } %>
+                      <%= render 'shared/favorite_button', place: place %>
                     <% else %>
                       <%= link_to place_place_favorites_path(place_id: place_detail['place_id']), method: :post, data: { turbo_method: :post }, class: "text-gray-500" do %>
                         <%= image_tag('un_favorite.png', alt: 'Favorite', class: 'h-6 w-6 sm:h-8 sm:w-8 mt-2 mb-2') %>
@@ -53,7 +53,7 @@
                 <% end %>
                 <% place = Place.find_by(name: place_detail['name'], address: place_detail['formatted_address']) %>
                 <% if place.present? %>
-                  <%= form_with url: place_place_histories_path(place_id: place.id), method: :post, local: true, html: { class: "new_tab_form" } do %>
+                  <%= form_with url: place_place_histories_path(place_id: place.id), method: :post, html: { class: "new_tab_form" } do %>
                     <%= hidden_field_tag :destination, "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place_detail['name'])}&travelmode=#{@travel_mode}" %>
                     <%= submit_tag 'ここに行く', class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
                   <% end %>

@@ -7,32 +7,32 @@
         <img src="<%= @place.photo_url %>" alt="<%= @place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
     <% end %>
 
-    <%= form_with(model: [@place, @review], local: true, data: { turbo: false }, html: { class: "w-full max-w-lg mx-auto text-sky-800 mt-8" }) do |form| %>
-        <%= render 'shared/error_messages', object: form.object %>
+    <%= form_with model: [@place, @review], data: { turbo: false }, html: { class: "w-full max-w-lg mx-auto text-sky-800 mt-8" } do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
 
         <div class="field mb-4">
-            <%= form.label :rating, "評価", class: "block text-lg text-center font-bold mb-2" %>
+            <%= f.label :rating, "評価", class: "block text-lg text-center font-bold mb-2" %>
             <div class="flex justify-center star-rating">
-                <%= form.radio_button :rating, 1, id: "rating_1", class: "hidden" %>
+                <%= f.radio_button :rating, 1, id: "rating_1", class: "hidden" %>
                     <label for="rating_1" data-rating="1" class="text-4xl cursor-pointer text-gray-300">&#9733;</label>
-                <%= form.radio_button :rating, 2, id: "rating_2", class: "hidden" %>
+                <%= f.radio_button :rating, 2, id: "rating_2", class: "hidden" %>
                     <label for="rating_2" data-rating="2" class="text-4xl cursor-pointer text-gray-300">&#9733;</label>
-                <%= form.radio_button :rating, 3, id: "rating_3", class: "hidden" %>
+                <%= f.radio_button :rating, 3, id: "rating_3", class: "hidden" %>
                     <label for="rating_3" data-rating="3" class="text-4xl cursor-pointer text-gray-300">&#9733;</label>
-                <%= form.radio_button :rating, 4, id: "rating_4", class: "hidden" %>
+                <%= f.radio_button :rating, 4, id: "rating_4", class: "hidden" %>
                     <label for="rating_4" data-rating="4" class="text-4xl cursor-pointer text-gray-300">&#9733;</label>
-                <%= form.radio_button :rating, 5, id: "rating_5", class: "hidden" %>
+                <%= f.radio_button :rating, 5, id: "rating_5", class: "hidden" %>
                     <label for="rating_5" data-rating="5" class="text-4xl cursor-pointer text-gray-300">&#9733;</label>
             </div>
         </div>
 
         <div class="mb-4 flex flex-col items-center">
-            <%= form.label :body, "レビュー", class: "block text-lg font-bold mb-2" %>
-            <%= form.text_area :body, class: "text-lg w-3/4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", style: "height: 10rem;" %>
+            <%= f.label :body, "レビュー", class: "block text-lg font-bold mb-2" %>
+            <%= f.text_area :body, class: "text-lg w-3/4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", style: "height: 10rem;" %>
         </div>
 
         <div class="flex items-center justify-center text-lg">
-            <%= form.submit "レビューを投稿する", class: "flex items-center justify-center px-2 md:px-4 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2 mb-12" %>
+            <%= f.submit "レビューを投稿する", class: "flex items-center justify-center px-2 md:px-4 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2 mb-12" %>
         </div>
     <% end %>
 </div>

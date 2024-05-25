@@ -63,7 +63,8 @@ module IndexHandling
     return unless user_signed_in?
 
     Place.find_or_create_by(name: place_detail['name'],
-                            address: place_detail['formatted_address']) do |new_place|
+                            address: place_detail['formatted_address'],
+                            user_id: current_user.id) do |new_place|
       new_place.website = place_detail['website']
       new_place.opening_hours = opening_hours
       new_place.remote_photo_url_url = photo_reference
