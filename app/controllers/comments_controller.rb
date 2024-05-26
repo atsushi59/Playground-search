@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
+      @review.create_notification_comment!(current_user, @comment.id)
       redirect_to place_review_path(@place, @review), notice: 'コメントが投稿されました'
     else
       redirect_to place_review_path(@place, @review), alert: 'コメントの投稿に失敗しました'

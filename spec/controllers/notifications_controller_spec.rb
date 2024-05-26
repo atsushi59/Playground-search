@@ -1,0 +1,19 @@
+require 'rails_helper'
+
+RSpec.describe NotificationsController, type: :controller do
+
+  describe "GET #index" do
+    it "returns http success" do
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET #mark_as_read" do
+    it "returns http success" do
+      get :mark_as_read
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+end
