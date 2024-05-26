@@ -7,6 +7,7 @@ class ReviewsLikesController < ApplicationController
   def create
     @review_like = @review.reviews_likes.new(user: current_user)
     @review_like.save
+    @review.create_notification_like!(current_user) if @review_like.persisted?
     @like_count = @review.reviews_likes.count
     render turbo_stream: turbo_stream.replace("like-button-#{@review.id}", partial: 'reviews/like_button', locals: { review: @review, place: @review.place, like_count: @like_count })
   end

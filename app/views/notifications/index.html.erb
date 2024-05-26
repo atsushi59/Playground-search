@@ -1,0 +1,45 @@
+<p class="text-lime-500 text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-center mt-6 mb-6">通知</p>
+<ul class="flex flex-col items-center">
+  <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+  <% if notifications.exists? %>
+    <% notifications.each do |notification| %>
+      <% visitor = notification.visitor %>
+      <% visited = notification.visited %>
+      <div class="bg-white border-2 border-blue-500 rounded-lg p-4 mb-4 w-3/4">
+        <div class="form-inline text-sky-800">
+          <span>
+            <%= visitor.name %> さんが
+            <% case notification.notification_type %>
+            <% when 'like' %>
+              <%= link_to 'あなたの投稿', place_review_path(notification.review.place, notification.review), style: "font-weight: bold;" %>
+              にいいねしました
+            <% when 'comment' %>
+              <% if notification.review.user_id == visited.id %>
+                <%= link_to "あなたの投稿", place_review_path(notification.review.place, notification.review), style: "font-weight: bold;" %>
+              <% else %>
+                <span>
+                  <%= link_to place_review_path(notification.review.place, notification.review) do %>
+                    <%= image_tag(visited.avatar_url.present? ? visited.avatar_url.to_s : 'default_avatar.png', class: "icon_mini") %>
+                    <strong>
+                      <%= visited.name %> さんの投稿
+                    </strong>
+                  <% end %>
+                </span>
+              <% end %>
+              にコメントしました
+              <p class="text-muted mb-0">
+                <%= notification.comment&.body %>
+              </p>
+            <% end %>
+          </span>
+        </div>
+        <div class="small text-muted text-right text-sky-800">
+          <%= time_ago_in_words(notification.created_at).upcase %>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate notifications %>
+  <% else %>
+    <p>通知はありません</p>
+  <% end %>
+</ul>

@@ -18,6 +18,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable,
          omniauth_providers: %i[line google_oauth2]
 
+  def unread_notifications?
+    notifications_as_visited.where(read: false).exists?
+  end
+
   def self.from_omniauth(auth)
     sns_credential = SnsCredential.find_by(provider: auth.provider, uid: auth.uid)
     return sns_credential.user if sns_credential&.user

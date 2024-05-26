@@ -57,10 +57,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_25_150233) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
-    t.bigint "review_id", null: false
-    t.bigint "comment_id", null: false
+    t.bigint "review_id"
+    t.bigint "comment_id"
     t.string "notification_type", null: false
-    t.boolean "read"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_notifications_on_comment_id"

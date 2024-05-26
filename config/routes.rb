@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  resources :users, only: [:show]
   resource :profiles
   resources :places do
     resources :place_favorites, only: %i[create destroy]
@@ -18,6 +19,11 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index]
   resources :review_favorites, only: [:index]
   resources :my_reviews, only: [:index]
+  resources :notifications, only: [:index] do
+    member do
+      patch :mark_as_read
+    end
+  end
   get 'index', to: 'searches#index'
   post 'search', to: 'searches#search'
   get '/terms_of_service', to: 'static_pages#terms_of_service'
