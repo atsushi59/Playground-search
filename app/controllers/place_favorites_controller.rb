@@ -13,13 +13,13 @@ class PlaceFavoritesController < PlacesController
   def create
     @favorite = @place.places_favorites.new(user: current_user)
     @favorite.save
-    render turbo_stream: turbo_stream.replace("favorite-button-#{@place.id}", partial: 'places/favorite_button', locals: { place: @place })
+    render turbo_stream: turbo_stream.replace("favorite-button-#{@place.id}", partial: 'shared/favorite_button', locals: { place: @place })
   end
 
   def destroy
     @favorite = @place.places_favorites.find_by(user: current_user)
     @favorite.destroy
-    render turbo_stream: turbo_stream.replace("favorite-button-#{@place.id}", partial: 'places/favorite_button', locals: { place: @place })
+    render turbo_stream: turbo_stream.replace("favorite-button-#{@place.id}", partial: 'shared/favorite_button', locals: { place: @place })
   end
 
   private
