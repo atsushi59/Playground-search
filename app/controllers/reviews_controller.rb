@@ -31,7 +31,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @place = Place.find(params[:place_id])
     @reviews = @place.reviews.order(created_at: :desc)
   end
 

@@ -8,7 +8,7 @@ class PlaceHistoriesController < PlacesController
     place_ids = current_user.place_histories.pluck(:place_id)
     @places = filter_places(Place.where(id: place_ids))
     filtered_place_ids = @places.pluck(:id)
-    @place_histories = current_user.place_histories.where(place_id: filtered_place_ids).includes(:place).order(created_at: :desc).page(params[:page]).per(10)
+    @place_histories = current_user.place_histories.by_place_ids(filtered_place_ids).page(params[:page]).per(10)
   end
 
   def create
