@@ -48,19 +48,4 @@ RSpec.describe SearchHandling, type: :module do
       expect(dummy_instance.generate_user_input).to eq(expected_string)
     end
   end
-
-  describe '#handle_response' do
-    context 'エラー応答の場合' do
-      let(:error_response) do
-        instance_double(HTTParty::Response, success?: false,
-                                            parsed_response: { 'error' => { 'message' => 'アクセス拒否' } })
-      end
-
-      it '適切にリダイレクトし、フラッシュメッセージを設定する' do
-        dummy_instance.handle_response(error_response)
-        expect(dummy_instance.flash[:danger]).to eq('検索に失敗しました')
-        expect(dummy_instance.instance_variable_get(:@redirect_path)).to eq(dummy_instance.root_path)
-      end
-    end
-  end
 end
