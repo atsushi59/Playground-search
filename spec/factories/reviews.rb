@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :review do
-    user { nil }
-    place { nil }
-    body { 'MyText' }
-    rating { 1 }
+    association :user
+    association :place
+    body { "Sample review body" }
+    rating { 4 }
   end
 end
