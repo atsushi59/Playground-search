@@ -57,7 +57,7 @@
                     <%= hidden_field_tag :destination, "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(place_detail['name'])}&travelmode=#{@travel_mode}" %>
                     <%= submit_tag 'ここに行く', class: "flex items-center justify-center px-2 md:px-12 py-1 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-2" %>
                   <% end %>
-                  <% if place.reviews.any? %>
+                  <% if user_signed_in? && place.reviews.any? %>
                     <%= link_to 'レビューを見る', place_review_path(place, place.reviews.first), class: "flex items-center justify-center px-2 md:px-8 py-1 md:py-3 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:ring mt-4" %>
                   <% end %>
                 <% else %>
