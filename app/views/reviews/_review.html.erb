@@ -1,12 +1,18 @@
 <div class="shadow-xl rounded-lg bg-white p-4 mx-8 pt-4 border border-gray-200 mb-8">
     <div class="flex flex-col items-center justify-center w-full">
         <div class="flex items-center space-x-2">
-        <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800 mt-4"><%= review.place.name %></p>
+            <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800 mt-4"><%= review.place.name %></p>
         </div>
         <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800 mt-4">住所: <%= review.place.address %></p>
         <%= render 'reviews/favorite_button', review: review, place: review.place %>
         <% if review.place.photo_url %>
-        <img src="<%= review.place.photo_url %>" alt="<%= review.place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
+            <img src="<%= review.place.photo_url %>" alt="<%= review.place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
+        <% end %>
+    </div>
+    <div class="flex items-center justify-center">
+        <%= form_with url: place_place_histories_path(place_id: review.place.id), method: :post, data: { turbo: false }, html: { class: "new_tab_form" } do %>
+            <%= hidden_field_tag :destination, "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(review.place.address)}" %>
+            <%= submit_tag 'ここに行く', class: "w-40 flex items-center justify-center py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-4" %>
         <% end %>
     </div>
     <div class="flex justify-center w-full mt-2">

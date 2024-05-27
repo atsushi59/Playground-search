@@ -6,11 +6,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-6 text-sky-800">
         <div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
         <% @favorite_reviews.each do |review| %>
-            <%= render 'reviews/review', review: review %>
+            <%= render 'reviews/review', review: review, place: review.place %>
         <% end %>
         </div>
     </div>
     <%= render 'shared/pagination', collection: @favorite_reviews %>
-    <% else %>
+<% else %>
     <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-sky-800 mt-8">お気に入りのレビューはまだありません。</p>
 <% end %>
