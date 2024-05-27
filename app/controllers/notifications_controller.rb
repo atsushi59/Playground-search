@@ -7,10 +7,4 @@ class NotificationsController < ApplicationController
       notification.update(read: true)
     end
   end
-
-  def mark_as_read
-    notification = Notification.find(params[:id])
-    notification.update(read: true)
-    redirect_to notifications_path
-  end
 end

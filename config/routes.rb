@@ -19,11 +19,7 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index]
   resources :review_favorites, only: [:index]
   resources :my_reviews, only: [:index]
-  resources :notifications, only: [:index] do
-    member do
-      patch :mark_as_read
-    end
-  end
+  resources :notifications, only: [:index]
   get 'index', to: 'searches#index'
   post 'search', to: 'searches#search'
   get '/terms_of_service', to: 'static_pages#terms_of_service'
