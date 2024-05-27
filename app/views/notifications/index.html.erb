@@ -38,7 +38,7 @@
         </div>
       </div>
     <% end %>
-    <%= paginate notifications %>
+      <%= render 'shared/pagination', collection: @notifications %>
   <% else %>
     <p>通知はありません</p>
   <% end %>

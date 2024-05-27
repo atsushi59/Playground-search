@@ -45,7 +45,7 @@
         <div class="relative">
             <div class="dropdown dropdown-end absolute bottom-0 right-0 w-full">
             <div class="flex justify-end">
-                <div tabindex="0" role="button" class="m-2 p-2 text-lime-500 bg-transparent border-none text-2xl">▼</div>
+                <div tabindex="0" role="button" class="text-lime-500 bg-transparent border-none text-2xl">▼</div>
             </div>
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full">
                 <% review.comments.each do |comment| %>
@@ -82,6 +82,10 @@
     </div>
     </dialog>
 
+    <%= form_with url: place_place_histories_path(place_id: @place.id), method: :post, data: { turbo: false }, html: { class: "new_tab_form" } do %>
+        <%= hidden_field_tag :destination, "https://www.google.com/maps/dir/?api=1&origin=current+location&destination=#{ERB::Util.url_encode(@place.address)}" %>
+        <%= submit_tag 'ここに行く', class: "flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-4" %>
+    <% end %>
 
     <div class="flex justify-center mt-6 mb-20">
         <%= link_to 'レビュー一覧へ戻る', reviews_path, class: 'bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring' %>
