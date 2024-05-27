@@ -19,6 +19,7 @@ class Review < ApplicationRecord
     if temp.blank?
       notification = current_user.notifications_as_visitor.new(
         review_id: id,
+        comment_id: nil,
         visited_id: user_id,
         notification_type: 'like'
       )

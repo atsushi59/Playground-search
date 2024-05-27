@@ -19,7 +19,6 @@
               <% else %>
                 <span>
                   <%= link_to place_review_path(notification.review.place, notification.review) do %>
-                    <%= image_tag(visited.avatar_url.present? ? visited.avatar_url.to_s : 'default_avatar.png', class: "icon_mini") %>
                     <strong>
                       <%= visited.name %> さんの投稿
                     </strong>
@@ -38,7 +37,7 @@
         </div>
       </div>
     <% end %>
-      <%= render 'shared/pagination', collection: @notifications %>
+    <%= render 'shared/pagination', collection: @notifications %>
   <% else %>
     <p>通知はありません</p>
   <% end %>
