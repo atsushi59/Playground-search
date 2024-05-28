@@ -20,15 +20,15 @@ class PlacesController < ApplicationController
     places = filter_by_keyword(places) if params[:keyword].present?
     places.order(id: :desc).page(params[:page]).per(10)
   end
-  
+
   def filter_by_address(places)
     places.where('address LIKE ?', "%#{params[:address_cont]}%")
   end
-  
+
   def filter_by_activity_type(places)
     places.where('activity_type = ?', params[:activity_type_eq])
   end
-  
+
   def filter_by_keyword(places)
     keyword = "%#{params[:keyword]}%"
     places.where('name LIKE ? OR address LIKE ?', keyword, keyword)
