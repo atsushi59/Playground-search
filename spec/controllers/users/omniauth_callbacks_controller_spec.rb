@@ -48,5 +48,64 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
                 expect(session['devise.google_data']).to eq(request.env['omniauth.auth'].except('extra'))
             end
         end
+
+        context '認証が失敗した場合' do
+            it '新規登録ページにリダイレクトする' do
+                user = build(:user)
+                allow(User).to receive(:from_omniauth).and_return(user)
+                allow(user).to receive(:persisted?).and_return(false)
+        
+                get :google_oauth2
+        
+                expect(response).to redirect_to(new_user_registration_url)
+                expect(session['devise.google_data']).to eq(request.env['omniauth.auth'].except('extra'))
+            end
+        end
+    end
+
+    describe 'LINEによる認証' do
+        before do
+            request.env['devise.mapping'] = Devise.mappings[:user]
+            OmniAuth.config.mock_auth[:line] = OmniAuth::AuthHash.new({
+                provider: 'line',
+                uid: '123456',
+                info: {
+                email: 'test@example.com',
+                name: 'test user'
+                },
+                credentials: {
+                token: 'mock_token',
+                refresh_token: 'mock_refresh_token'
+                }
+            })
+            request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:line]
+        end
+    
+        context '認証が成功した場合' do
+            it 'ユーザーをサインインさせ、リダイレクトする' do
+                user = create(:user)
+                allow(User).to receive(:from_omniauth).and_return(user)
+                allow(user).to receive(:persisted?).and_return(true)
+        
+                get :line
+        
+                expect(controller.current_user).to eq(user)
+                expect(response).to redirect_to(root_path)
+                expect(flash[:notice]).to eq('LINE アカウントによる認証に成功しました。')
+            end
+        end
+    
+        context '認証が失敗した場合' do
+            it '新規登録ページにリダイレクトする' do
+                user = build(:user)
+                allow(User).to receive(:from_omniauth).and_return(user)
+                allow(user).to receive(:persisted?).and_return(false)
+        
+                get :line
+        
+                expect(response).to redirect_to(new_user_registration_url)
+                expect(session['devise.line_data']).to eq(request.env['omniauth.auth'].except('extra'))
+            end
+        end
     end
 end
