@@ -7,7 +7,7 @@ class Place < ApplicationRecord
   has_many :reviews, dependent: :destroy
   mount_uploader :photo_url, PlaceImageUploader
 
-  scope :with_reviews_by_user, ->(user_id) {
-    joins(:reviews).includes(:reviews).where(reviews: { user_id: user_id }).distinct
+  scope :with_reviews_by_user, lambda { |user_id|
+    joins(:reviews).includes(:reviews).where(reviews: { user_id: }).distinct
   }
 end

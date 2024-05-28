@@ -13,19 +13,17 @@ class Review < ApplicationRecord
   validates :user_id, uniqueness: { scope: :place_id }
 
   def create_notification_like!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and review_id = ? and notification_type = ?", current_user.id, user_id, id, 'like'])
-    if temp.blank?
-      notification = current_user.notifications_as_visitor.new(
-        review_id: id,
-        comment_id: nil,
-        visited_id: user_id,
-        notification_type: 'like'
-      )
-      if notification.visitor_id == notification.visited_id
-        notification.read = true
-      end
-      notification.save if notification.valid?
-    end
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and review_id = ? and notification_type = ?', current_user.id, user_id, id, 'like'])
+    return unless temp.blank?
+
+    notification = current_user.notifications_as_visitor.new(
+      review_id: id,
+      comment_id: nil,
+      visited_id: user_id,
+      notification_type: 'like'
+    )
+    notification.read = true if notification.visitor_id == notification.visited_id
+    notification.save if notification.valid?
   end
 
   def create_notification_comment!(current_user, comment_id)
@@ -39,13 +37,11 @@ class Review < ApplicationRecord
   def save_notification_comment!(current_user, comment_id, visited_id)
     notification = current_user.notifications_as_visitor.new(
       review_id: id,
-      comment_id: comment_id,
-      visited_id: visited_id,
+      comment_id:,
+      visited_id:,
       notification_type: 'comment'
     )
-    if notification.visitor_id == notification.visited_id
-      notification.read = true
-    end
+    notification.read = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
   end
 end
