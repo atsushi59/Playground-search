@@ -1,7 +1,7 @@
 <br>
 <p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mb-6"><%= t('devise.mailer.reset_password_instructions.action') %></p>
 
-<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-sm sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4">
+<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4">
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <%= f.hidden_field :reset_password_token %>
