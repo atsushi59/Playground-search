@@ -21,6 +21,7 @@
                     </div>
                 </div>
                 <ul class="menu bg-white rounded-box mt-2 z-[1] p-2 shadow dropdown-content flex flex-col">
+                    <li class="relative">
                         <details class="dropdown">
                             <summary class="dropdown-summary cursor-pointer text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-4 py-2 focus:outline-none whitespace-nowrap">ユーザー</summary>
                             <ul class="p-2 bg-white rounded-box mt-2 flex flex-col">
@@ -29,6 +30,7 @@
                                 <li><%= link_to 'サインアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs md:text-sm lg:text-sm xl:text-sm px-4 py-2 focus:outline-none whitespace-nowrap" %></li>
                             </ul>
                         </details>
+                    </li>
                     <li class="relative">
                         <details class="dropdown">
                             <summary class="dropdown-summary cursor-pointer text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-4 py-2 focus:outline-none whitespace-nowrap">マイロケーション</summary>
