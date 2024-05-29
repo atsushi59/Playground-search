@@ -68,6 +68,7 @@ group :development, :test do
   gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'rubocop'
   gem 'rubocop-checkstyle_formatter'
   gem 'rubocop-rails'

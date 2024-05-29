@@ -12,6 +12,8 @@ SimpleCov.start
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
 require 'devise'
+require 'support/controller_macros'
+
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -40,4 +42,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
 end

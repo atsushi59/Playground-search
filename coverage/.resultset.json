@@ -63,18 +63,20 @@
           1,
           1,
           1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
           1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          3,
           null,
           null,
           null,
@@ -84,6 +86,8 @@
           0,
           null,
           null,
+          1,
+          1,
           1,
           1,
           1,
@@ -1000,6 +1004,28 @@
           null
         ]
       },
+      "/myapp/spec/support/controller_macros.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/myapp/spec/support/devise.rb": {
+        "lines": [
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/myapp/app/controllers/concerns/calculate_travel_time_handling.rb": {
         "lines": [
           null,
@@ -1376,7 +1402,7 @@
           1,
           null,
           1,
-          5,
+          9,
           null,
           null,
           1,
@@ -2671,6 +2697,46 @@
           null
         ]
       },
+      "/myapp/spec/controllers/users/registrations_controller_spec.rb": {
+        "lines": [
+          null,
+          1,
+          null,
+          1,
+          1,
+          4,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/myapp/spec/models/comment_spec.rb": {
         "lines": [
           null,
@@ -3387,6 +3453,6 @@
         ]
       }
     },
-    "timestamp": 1716901063
+    "timestamp": 1716940794
   }
 }
