@@ -96,7 +96,7 @@ RSpec.describe SearchesController, type: :controller do
 
       it '旅行時間情報が利用できないことを通知する' do
         expect(controller.calculate_time_based_on_mode(origin, destination,
-                                                       transport_mode)).to eq('所要時間の情報は利用できません。')
+                                                      transport_mode)).to eq('所要時間の情報は利用できません。')
       end
     end
   end
