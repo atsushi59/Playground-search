@@ -233,6 +233,8 @@
           null,
           null,
           1,
+          null,
+          1,
           null
         ]
       },
@@ -819,7 +821,7 @@
           null,
           1,
           1,
-          60,
+          63,
           50,
           50,
           63,
@@ -1402,7 +1404,7 @@
           1,
           null,
           1,
-          15,
+          18,
           null,
           null,
           1,
@@ -2697,6 +2699,42 @@
           null
         ]
       },
+      "/myapp/spec/controllers/users/passwords_controller_spec.rb": {
+        "lines": [
+          null,
+          1,
+          null,
+          1,
+          4,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/myapp/spec/controllers/users/registrations_controller_spec.rb": {
         "lines": [
           null,
@@ -3492,6 +3530,6 @@
         ]
       }
     },
-    "timestamp": 1716941567
+    "timestamp": 1716945748
   }
 }
