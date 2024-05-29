@@ -3,7 +3,7 @@
         <%= form_with(model: [@review.place, @review, @review.comments.build], url: place_review_comments_path(@review.place, @review), method: :post) do |f| %>
         <div class="form-group mb-4 w-full">
             <%= f.label :body, 'コメント', class: 'block text-lg text-center text-sky-800' %><br>
-            <%= f.text_area :body, class: 'form-control w-full h-40 border border-gray-300 p-2 rounded' %>
+            <%= f.text_area :body, class: 'form-control w-full h-40 border border-gray-300 p-2 rounded text-lg font-bold' %>
         </div>
         <div class="form-group flex justify-center">
             <%= f.submit 'コメントを投稿', class: 'btn flex items-center justify-center px-4 md:px-8 py-2 md:py-3 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring text-center' %>
