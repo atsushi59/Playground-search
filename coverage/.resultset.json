@@ -819,7 +819,7 @@
           null,
           1,
           1,
-          56,
+          60,
           50,
           50,
           63,
@@ -1402,7 +1402,7 @@
           1,
           null,
           1,
-          9,
+          15,
           null,
           null,
           1,
@@ -2737,6 +2737,45 @@
           null
         ]
       },
+      "/myapp/spec/controllers/users/sessions_controller_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          4,
+          null,
+          null,
+          1,
+          5,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/myapp/spec/models/comment_spec.rb": {
         "lines": [
           null,
@@ -3453,6 +3492,6 @@
         ]
       }
     },
-    "timestamp": 1716940794
+    "timestamp": 1716941567
   }
 }
