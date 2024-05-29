@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe PlaceHistoriesController, type: :controller do
     let(:user) { create(:user) }
     let(:place) { create(:place, user: user) }
+    let(:new_place) { create(:place, user: user) }
     let!(:place_history) { create(:place_history, user: user, place: place) }
 
     before do
@@ -35,12 +36,12 @@ RSpec.describe PlaceHistoriesController, type: :controller do
     describe 'POST #create' do
         it '訪問履歴が作成されること' do
             expect do
-                post :create, params: { place_id: place.id, destination: '/some_destination' }, format: :json
-            end.to change { PlaceHistory.count }.by(0)
+                post :create, params: { place_id: new_place.id, destination: '/some_destination' }, format: :json
+            end.to change { PlaceHistory.count }.by(1)
         end
 
         it '正しいJSONレスポンスが返されること' do
-            post :create, params: { place_id: place.id, destination: '/some_destination' }, format: :json
+            post :create, params: { place_id: new_place.id, destination: '/some_destination' }, format: :json
             json = JSON.parse(response.body)
             expect(json['redirect_to']).to eq('/some_destination')
         end

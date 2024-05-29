@@ -1,11 +1,8 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe PlaceFavoritesController, type: :controller do
     let(:user) { create(:user) }
     let(:place) { create(:place, user: user) }
-    let!(:places_favorite) { create(:places_favorite, user: user, place: place) }
 
     before do
         sign_in user
@@ -20,6 +17,7 @@ RSpec.describe PlaceFavoritesController, type: :controller do
         end
 
         it 'お気に入りの場所が@placesに割り当てられること' do
+            places_favorite = create(:places_favorite, user: user, place: place)
             get :index
             expect(response.body).to include(place.name)
             expect(response.body).to include(place.address)
@@ -30,7 +28,7 @@ RSpec.describe PlaceFavoritesController, type: :controller do
         it 'お気に入りを登録できること' do
             expect do
                 post :create, params: { place_id: place.id }
-            end.to change { PlacesFavorite.count }.by(0)
+            end.to change { PlacesFavorite.count }.by(1)
         end
 
         it 'turbo_streamのレスポンスが返されること' do
@@ -40,6 +38,8 @@ RSpec.describe PlaceFavoritesController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
+        let!(:places_favorite) { create(:places_favorite, user: user, place: place) }
+
         it 'お気に入りが削除されること' do
             expect do
                 delete :destroy, params: { place_id: place.id, id: places_favorite.id }

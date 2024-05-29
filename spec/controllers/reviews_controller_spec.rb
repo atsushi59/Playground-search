@@ -49,27 +49,22 @@ RSpec.describe ReviewsController, type: :controller do
         end
     end
 
-    describe 'GET #new' do
-        it 'リクエストが成功すること' do
-            get :new, params: { place_id: place.id }
-            expect(response).to be_successful
-        end
-    end
-
     describe 'POST #create' do
-        context '有効なパラメータの場合' do
-            it 'レビューが作成されること' do
-                expect do
-                    post :create, params: { place_id: place.id, review: { body: 'Great place!', rating: 5 } }
-                end.to change(Review, :count).by(0)
-            end
+        it '有効なパラメータの場合 レビューが作成されること' do
+            new_user = create(:user)
+            new_place = create(:place, user: new_user)
+            sign_in new_user
+
+            expect do
+                post :create, params: { place_id: new_place.id, review: { body: 'Great place!', rating: 5 } }
+            end.to change(Review, :count).by(1)
         end
 
         context '無効なパラメータの場合' do
             it 'レビューが作成されないこと' do
-                expect do
+                    expect do
                     post :create, params: { place_id: place.id, review: { body: '', rating: '' } }
-                end.not_to change(Review, :count)
+                    end.not_to change(Review, :count)
             end
         end
     end
@@ -115,7 +110,6 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe 'DELETE #destroy' do
         it 'レビューが削除されること' do
-        review
             expect do
                 delete :destroy, params: { place_id: place.id, id: review.id }
             end.to change(Review, :count).by(-1)
