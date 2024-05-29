@@ -9,6 +9,15 @@ module SearchHandling
     end
   end
 
+  def check_address
+    if params[:address].blank?
+      flash[:alert] = '位置情報を取得できませんでした。再度検索してください。'
+      redirect_to root_path
+      return false
+    end
+    true
+  end
+
   def generate_user_input
     root = "#{params[:address]}から#{params[:selected_transport]}で"
     time = "正確に#{params[:selected_time]}で到着する"
