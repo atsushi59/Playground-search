@@ -11,6 +11,8 @@ class SearchesController < ApplicationController
   before_action :set_search_limit, only: [:search]
 
   def search
+    return unless check_address
+    
     chatgpt_service = ChatgptService.new(ENV['OPEN_AI_API_KEY'])
 
     setup_session
