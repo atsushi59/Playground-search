@@ -40,7 +40,7 @@ module SearchHandling
       redirect_to index_path
     else
       redirect_to root_path
-      flash[:alert] = '検索に失敗しました'
+      flash[:alert] = '検索に失敗しました 再度検索してください'
     end
   end
 

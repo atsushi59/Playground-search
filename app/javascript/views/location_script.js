@@ -1,4 +1,3 @@
-
 function showPosition(position) {
     let lat = position.coords.latitude;
     let lng = position.coords.longitude;
@@ -20,27 +19,7 @@ document.getElementById('location_form').addEventListener('submit', function(eve
     if (!document.getElementById('hidden_address').value) {
         event.preventDefault();
         if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
+            navigator.geolocation.getCurrentPosition(showPosition);
         }
     }
 });
-
-function showError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            window.alert("位置情報を取得できませんでした。ブラウザまたはデバイスのGPS設定を確認してください。");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            window.alert("ジオロケーションは利用できません。ブラウザまたはデバイスの設定を確認してください。");
-            break;
-        case error.TIMEOUT:
-            window.alert("位置情報の取得タイムアウトしました。");
-            break;
-    }
-    closeModal();
-}
-
-function closeModal() {
-    document.getElementById('modal').classList.add('hidden');
-    document.getElementById('my_modal_2').close();
-}
