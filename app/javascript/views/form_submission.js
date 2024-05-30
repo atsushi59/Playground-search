@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
     const forms = document.querySelectorAll('.new_tab_form');
     forms.forEach(form => {
         form.addEventListener('submit', function(event) {

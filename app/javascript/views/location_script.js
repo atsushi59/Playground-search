@@ -15,11 +15,13 @@ function showPosition(position) {
     });
 }
 
-document.getElementById('location_form').addEventListener('submit', function(event) {
-    if (!document.getElementById('hidden_address').value) {
-        event.preventDefault();
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+document.addEventListener('turbo:load', function() {
+    document.getElementById('location_form').addEventListener('submit', function(event) {
+        if (!document.getElementById('hidden_address').value) {
+            event.preventDefault();
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
         }
-    }
+    });
 });
