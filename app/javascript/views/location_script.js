@@ -36,7 +36,11 @@ document.addEventListener('turbo:load', function() {
             }
         });
     } else {
-        if (!form) console.error('Form not found');
-        if (!hiddenAddress) console.error('Hidden address input not found');
+        if (!form) {
+            console.error('Form not found');
+        }
+        if (!hiddenAddress) {
+            console.error('Hidden address input not found');
+        }
     }
 });
