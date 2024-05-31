@@ -20,4 +20,8 @@ module ApplicationHelper
       熊本県 大分県 宮崎県 鹿児島県 沖縄県
     ]
   end
+
+  def unchecked_notifications
+    current_user.notifications_as_visited.where(read: false)
+  end
 end
