@@ -2,16 +2,17 @@ document.addEventListener('turbo:load', function() {
     var form = document.getElementById('location_form');
     var modal = document.getElementById('my_modal_2');
 
-    if (form) {
-        if (modal) {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                modal.showModal();
-            });
-        } else {
-            console.error('Modal not found');
-        }
+    if (form && modal) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            modal.showModal();
+        });
     } else {
-        console.error('Form not found');
+        if (!form) {
+            console.log('Form not found');
+        }
+        if (!modal) {
+            console.log('Modal not found');
+        }
     }
 });
