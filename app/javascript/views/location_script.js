@@ -15,7 +15,8 @@ function showPosition(position) {
                 hiddenAddressElement.value = address;
                 formElement.submit();
             } else {
-                console.error('Hidden address input or form not found');
+                if (!hiddenAddressElement) console.error('Hidden address input not found');
+                if (!formElement) console.error('Form not found');
             }
         }
     });
