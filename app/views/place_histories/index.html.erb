@@ -10,7 +10,7 @@
         <%= render 'places/place_card', place: place %>
       <% end %>
     </div>
-    <%= render 'shared/pagination', collection: @place_histories %>
+    <%= render 'shared/pagination', collection: @places %>
   <% else %>
     <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-sky-800 mt-8">行った場所はありません</p>
   <% end %>

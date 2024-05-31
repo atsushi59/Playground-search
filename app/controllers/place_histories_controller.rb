@@ -6,9 +6,8 @@ class PlaceHistoriesController < PlacesController
 
   def index
     place_ids = current_user.place_histories.pluck(:place_id)
-    @places = filter_places(Place.where(id: place_ids))
-    filtered_place_ids = @places.pluck(:id)
-    @place_histories = current_user.place_histories.by_place_ids(filtered_place_ids).page(params[:page]).per(10)
+    @places = filter_places(Place.where(id: place_ids)).page(params[:page]).per(10)
+    @place_histories = current_user.place_histories.where(place_id: @places.pluck(:id)).includes(:place).order(created_at: :desc)
   end
 
   def create
