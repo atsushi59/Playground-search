@@ -1,5 +1,6 @@
 <div id="comment-<%= comment.id %>">
-    <div class="comment mb-4 p-2 border border-gray-200 rounded">
+    <p class="text-center text-base font-bold text-lime-500 mb-2">コメント</p>
+    <div class="comment mb-4 p-2 border border-blue-500 border-2 rounded">
         <div class="flex items-start">
         <% if comment.user.avatar_url.present? %>
             <%= image_tag comment.user.avatar_url, alt: comment.user.name, class: 'w-8 h-8 rounded-full mr-2' %>
