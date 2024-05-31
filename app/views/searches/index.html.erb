@@ -69,10 +69,12 @@
         <% end %>
       </div>
     <% else %>
-      <p class="text-center">結果が見つかりませんでした。</p>
+      <p class="text-center text-sky-800">結果が見つかりませんでした。</p>
+      <p class="text-center text-sky-800">再度検索してください。</p>
     <% end %>
   <% else %>
-    <p class="text-center">結果が見つかりませんでした。</p>
+    <p class="text-center text-sky-800">結果が見つかりませんでした。</p>
+    <p class="text-center text-sky-800">再度検索してください。</p>
   <% end %>
   <div class="mb-12">
   <%= render 'shared/search', button_text: '再検索' %>
