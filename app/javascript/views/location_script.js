@@ -9,19 +9,33 @@ function showPosition(position) {
             let fullAddress = results[0].formatted_address;
             let address = fullAddress.replace(/日本、〒\d{3}-\d{4} /, '');
 
-            document.getElementById('hidden_address').value = address;
-            document.getElementById('location_form').submit();
+            let hiddenAddressElement = document.getElementById('hidden_address');
+            let formElement = document.getElementById('location_form');
+            if (hiddenAddressElement && formElement) {
+                hiddenAddressElement.value = address;
+                formElement.submit();
+            } else {
+                console.error('Hidden address input or form not found');
+            }
         }
     });
 }
 
 document.addEventListener('turbo:load', function() {
-    document.getElementById('location_form').addEventListener('submit', function(event) {
-        if (!document.getElementById('hidden_address').value) {
-            event.preventDefault();
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(showPosition);
+    let form = document.getElementById('location_form');
+    let hiddenAddress = document.getElementById('hidden_address');
+
+    if (form && hiddenAddress) {
+        form.addEventListener('submit', function(event) {
+            if (!hiddenAddress.value) {
+                event.preventDefault();
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }
             }
-        }
-    });
+        });
+    } else {
+        if (!form) console.error('Form not found');
+        if (!hiddenAddress) console.error('Hidden address input not found');
+    }
 });
