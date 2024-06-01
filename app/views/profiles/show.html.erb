@@ -1,22 +1,20 @@
 <p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mt-6 pb-4">マイページ</p>
-<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-xs sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4 mt-4 mb-12">
+<div class="bg-white p-4 rounded shadow-lg mx-auto max-w-xs sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-xl overflow-auto mt-4 mb-12">
     <div class="min-h-50vh">
-            <div class="flex flex-col">
-                <div class="flex flex-col items-center">
-                    <div class="text-xl font-medium text-sky-800 text-center mt-4">氏名</div>
-                    <div class="text-xl font-medium text-sky-800 text-center break-words mt-4" style="word-break: break-word;"><%= current_user.name %></div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="text-xl font-medium text-sky-800 text-center mt-6">メールアドレス</div>
-                    <div class="text-xl font-medium text-sky-800 text-center break-words mt-4" style="word-break: break-word;"><%= current_user.email %></div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="text-xl font-medium text-sky-800 text-center mt-6">アバター</div>
-                    <div class="text-center"><%= image_tag current_user.avatar_url, size: '150x150', class: 'rounded-full mx-auto mt-4 mb-4' %></div>
-                </div> 
-            </div>
-            <div class="text-center mt-8 mb-12">
-                <%= link_to '編集', edit_profiles_path, class: "px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-6" %>
-            </div>    
+        <div class="flex flex-col items-center">
+            <div class="text-xl font-medium text-center mt-4">氏名</div>
+            <div class="text-xl font-medium text-center break-words mt-4" style="word-break: break-word;"><%= current_user.name %></div>
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="text-xl font-medium text-center mt-6">メールアドレス</div>
+            <div class="text-xl font-medium text-center break-words mt-4" style="word-break: break-word;"><%= current_user.email %></div>
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="text-xl font-medium text-center mt-6">アバター</div>
+            <div class="text-center"><%= image_tag current_user.avatar_url, size: '150x150', class: 'rounded-full mx-auto mt-4 mb-4' %></div>
+        </div> 
+        <div class="text-center mt-8 mb-12">
+            <%= link_to '編集', edit_profiles_path, class: "px-24 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring mt-6" %>
+        </div>    
     </div>
 </div>

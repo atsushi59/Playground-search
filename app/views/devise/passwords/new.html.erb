@@ -1,12 +1,12 @@
-<br>
-<p class="text-center pb-6 text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mb-6"><%= t('devise.confirmations.new.forgot_your_password') %></p>
 
-<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4">
+<p class="text-center pb-6 text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mt-12 mb-6"><%= t('devise.confirmations.new.forgot_your_password') %></p>
+
+<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto">
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="text-center p-4 text-base">
       <div class="mb-4">
-        <%= f.label :email, class: "block text-lg font-medium text-sky-800" %><br />
+        <%= f.label :email, class: "block text-lg font-medium" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full max-w-xs border-2 border-blue-300 h-10" %>
       </div>
 
@@ -17,11 +17,11 @@
   <% end %>
 
   <div class="mt-8 text-center">
-    <%= link_to 'ログインページはこちら', new_user_session_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-xl text-lg p-2 hover:p-4 " %>
+    <%= link_to 'ログインページはこちら', new_user_session_path, class: "hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-xl text-lg p-2 hover:p-4" %>
   </div>
 
   <div class="mt-8 text-center">
-    <%= link_to 'アカウント登録ページはこちら', new_user_registration_path, class: "text-sky-800 hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-xl text-lg p-2 hover:p-4 " %>
+    <%= link_to 'アカウント登録ページはこちら', new_user_registration_path, class: "hover:bg-blue-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-xl text-lg p-2 hover:p-4" %>
   </div>
 </div>
 <br>

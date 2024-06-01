@@ -24,14 +24,14 @@
     </script>
   </head>
 
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen bg-sky-50 font-mono text-sky-800">
     <% if user_signed_in?	 %>
         <%= render 'shared/header_logged_in' %>
       <% else %>
         <%= render 'shared/header_logged_out' %>
       <% end %>
     <%= render 'shared/flash_messages' %>
-    <main class="flex-grow bg-sky-50 font-mono">
+    <main class="flex-grow">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>

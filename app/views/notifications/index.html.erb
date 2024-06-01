@@ -6,7 +6,7 @@
       <% visitor = notification.visitor %>
       <% visited = notification.visited %>
       <div class="bg-white border-2 border-blue-500 rounded-lg p-4 mb-4 w-3/4">
-        <div class="form-inline text-sky-800">
+        <div class="form-inline">
           <span>
             <%= visitor.name %> さんが
             <% case notification.notification_type %>
@@ -32,13 +32,13 @@
             <% end %>
           </span>
         </div>
-        <div class="small text-muted text-right text-sky-800">
+        <div class="small text-muted text-right">
           <%= time_ago_in_words(notification.created_at).upcase %>
         </div>
       </div>
     <% end %>
     <%= render 'shared/pagination', collection: @notifications %>
   <% else %>
-    <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-sky-800 mt-8">通知はありません</p>
+    <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold mt-8">通知はありません</p>
   <% end %>
 </ul>

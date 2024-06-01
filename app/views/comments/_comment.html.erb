@@ -8,8 +8,8 @@
             <%= image_tag 'avatar.png', alt: comment.user.name, class: 'w-8 h-8 rounded-full mr-2' %>
         <% end %>
         <div class="flex flex-col">
-            <strong class="text-sky-800 text-left m-0" style="line-height: 2rem;"><%= comment.user.name %></strong>
-            <p class="text-sky-800 text-left mt-1 mb-0"><%= comment.body %></p>
+            <strong class="text-left m-0" style="line-height: 2rem;"><%= comment.user.name %></strong>
+            <p class="text-left mt-1 mb-0"><%= comment.body %></p>
         </div>
         </div>
         <% if comment.user == current_user %>

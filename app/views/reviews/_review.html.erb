@@ -1,9 +1,9 @@
 <div class="shadow-xl rounded-lg bg-white p-4 mx-8 pt-4 border border-gray-200 mb-8">
     <div class="flex flex-col items-center justify-center w-full">
-        <div class="flex items-center space-x-2">
-            <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800 mt-4"><%= review.place.name %></p>
+        <div class="flex items-center">
+            <p class="text-center text-2xl text-sky-800 mt-4"><%= review.place.name %></p>
         </div>
-        <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800 mt-4">住所: <%= review.place.address %></p>
+        <p class="text-center text-2xl text-sky-800 my-1 mt-4">住所: <%= review.place.address %></p>
         <%= render 'reviews/favorite_button', review: review, place: review.place %>
         <% if review.place.photo_url %>
             <img src="<%= review.place.photo_url %>" alt="<%= review.place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
