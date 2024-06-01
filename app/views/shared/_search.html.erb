@@ -10,22 +10,22 @@
         <%= form_with url: search_path, method: :post, id: 'location_form', data: {turbo: false} do |f| %>
             <div class="text-center p-10 text-base">
                 <div class="mb-4">
-                    <%= f.label :selected_transport, '交通手段', class: "block text-sm font-medium text-sky-800" %>
+                    <%= f.label :selected_transport, '交通手段', class: "block text-sm font-medium" %>
                     <%= f.select :selected_transport, [['車', '車'], ['公共交通機関', '公共交通機関']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
                 </div>
 
                 <div class="mb-4">
-                    <%= f.label :selected_time, '所要時間', class: "block text-sm font-medium text-sky-800" %>
+                    <%= f.label :selected_time, '所要時間', class: "block text-sm font-medium" %>
                     <%= f.select :selected_time, [['30分', '45分以内'], ['1時間', '75分以下45分以上'], ['1時間30分', '105分以下75分以上'], ['2時間', '135分以下105分以上']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
                 </div>
 
                 <div class="mb-4">
-                    <%= f.label :selected_age, '子供の年齢', class: "block text-sm font-medium text-sky-800" %>
+                    <%= f.label :selected_age, '子供の年齢', class: "block text-sm font-medium" %>
                     <%= f.select :selected_age, [['3歳以下', '3歳以下'], ['6歳以下', '6歳以下'], ['12歳以下', '12歳以下']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
                 </div>
 
                 <div class="mb-4">
-                    <%= f.label :selected_activity, '遊戯施設', class: "block text-sm font-medium text-sky-800" %>
+                    <%= f.label :selected_activity, '遊戯施設', class: "block text-sm font-medium" %>
                     <%= f.select :selected_activity, [['公園', '公園'], ['室内遊び場', '室内遊び場'], ['レジャー施設', 'レジャー施設']], {}, {class: "select w-full max-w-xs border-2 border-blue-300"} %>
                 </div>
 
@@ -35,10 +35,10 @@
                 </div>
 
                 <p class="text-center text-lg text-rose-800 mt-8">※ 1日の検索を3回までに制限しております</p>
-                <p class="text-center text-sky-800 mt-4">※ 位置情報を使用しますのでGPSをONで使用ください</p>
-                <p class="text-center text-sky-800 mt-4">※ 交通手段で公共交通機関を選択の場合</p>
-                <p class="text-center text-sky-800 mt-2">検索された場所から徒歩込みでルート時間を表示するため</p>
-                <p class="text-center text-sky-800 mt-2">所要時間を長めに設定お願いします</p>
+                <p class="text-center mt-4">※ 位置情報を使用しますのでGPSをONで使用ください</p>
+                <p class="text-center mt-4">※ 交通手段で公共交通機関を選択の場合</p>
+                <p class="text-center mt-2">検索された場所から徒歩込みでルート時間を表示するため</p>
+                <p class="text-center mt-2">所要時間を長めに設定お願いします</p>
             </div>
         <% end %>
     </div>
@@ -46,10 +46,10 @@
 
 <dialog id="my_modal_2" class="modal">
     <div class="modal-box flex flex-col items-center justify-center">
-        <p class="font-bold text-2xl text-center text-sky-800">検索中です</p>
-        <p class="text-center text-xl text-sky-800 py-4">しばらくお待ちください。</p>
-        <p class="text-center text-sky-800">※ 当サイトの生成AIは使用する度に学習し、改善されます。</p>
-        <p class="text-center text-sky-800 pb-4">初回の検索では正しい結果が受け取れない可能性があります</p>
+        <p class="font-bold text-2xl text-center">検索中です</p>
+        <p class="text-center text-xl py-4">しばらくお待ちください。</p>
+        <p class="text-center">※ 当サイトの生成AIは使用する度に学習し、改善されます。</p>
+        <p class="text-center pb-4">初回の検索では正しい結果が受け取れない可能性があります</p>
         <span class="loading loading-spinner w-12 h-12 mb-6 text-info"></span>
     </div>    
 </dialog>

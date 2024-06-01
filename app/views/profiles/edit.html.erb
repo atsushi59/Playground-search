@@ -1,29 +1,29 @@
 <p class="text-center text-xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-lime-500 mt-6 pb-4">編集ページ</p>
-<div class="bg-white p-4 rounded shadow-lg mx-auto relative max-w-xs sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-xl h-auto overflow-auto px-4 mt-4 mb-12">
+<div class="bg-white p-4 rounded shadow-lg mx-auto max-w-xs sm:max-w-md md:max-w-md lg:max-w-lg xl:max-w-xl overflow-auto mt-4 mb-12">
     <div class="flex justify-center items-center min-h-50vh">
         <div class="text-center pb-4 w-full">
             <%= form_with model: @user, url: profiles_path, method: :put do |f| %>
                 <div class="w-full">
                     <div class="pb-8 pt-6 flex flex-col items-center">
-                        <div class="text-xl font-medium text-sky-800 mb-2">氏名</div>
+                        <div class="text-xl font-medium mb-2">氏名</div>
                         <div class="w-3/4">
-                            <%= f.text_field :name, autocomplete: "new-password", class: "input input-bordered w-full text-xl text-center font-medium text-sky-800 border-2 border-blue-300" %>
+                            <%= f.text_field :name, autocomplete: "new-password", class: "input input-bordered w-full text-xl text-center font-medium border-2 border-blue-300" %>
                         </div>
                     </div>
                     <div class="pb-8 flex flex-col items-center">
-                        <div class="text-xl font-medium text-sky-800 mb-2">メールアドレス</div>
+                        <div class="text-xl font-medium mb-2">メールアドレス</div>
                         <div class="w-3/4">
-                            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full text-xl text-center font-medium text-sky-800 border-2 border-blue-300" %>
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full text-xl text-center font-medium border-2 border-blue-300" %>
                         </div>
                     </div>
                     <div class="pb-8 flex flex-col items-center">
-                        <div class="text-xl font-medium text-sky-800 mb-2">アバター</div>
+                        <div class="text-xl font-medium mb-2">アバター</div>
                         <div class="flex flex-col items-center">
                             <%= image_tag @user.avatar.url, size: '150x150', class: "rounded-full mx-auto mt-4" %>
-                            <%= f.file_field :avatar, accept: 'image/*', class: "w-full text-sm md:text-base text-center font-medium text-sky-800 mt-6" %>
+                            <%= f.file_field :avatar, accept: 'image/*', class: "w-full text-sm md:text-base text-center font-medium mt-6" %>
                             <% if @user.avatar? %>
                                 <div class="flex items-center mt-4">
-                                    <p class="text-sky-800 text-sm md:text-base">現在のアバターを削除しますか？</p>
+                                    <p class="text-sm md:text-base">現在のアバターを削除しますか？</p>
                                     <%= f.check_box :remove_avatar, class: "h-6 w-6 ml-2" %>
                                 </div>
                             <% end %>

@@ -3,8 +3,8 @@
 <%= render 'reviews/search_form', url: my_reviews_path, prefecture_options: @prefecture_options, activity_type_options: @activity_type_options %>
 
 <% if @my_reviews.any? %>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-6 text-sky-800">
-        <div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-6">
+        <div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
         <% displayed_place_names = [] %>
         <% @my_reviews.each do |place| %>
             <% unless displayed_place_names.include?(place.name) %>
@@ -12,9 +12,9 @@
             <div class="shadow-xl rounded-lg bg-white p-4 mx-8 pt-4 border border-gray-200 mb-8">
                 <div class="flex flex-col items-center justify-center w-full">
                 <div class="flex items-center space-x-2">
-                    <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl text-sky-800 mt-4"><%= place.name %></p>
+                    <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl mt-4"><%= place.name %></p>
                 </div>
-                <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 text-sky-800 mt-4">住所: <%= place.address %></p>
+                <p class="text-center text-lg md:text-2xl lg:text-2xl xl:text-2xl my-1 mt-4">住所: <%= place.address %></p>
                 <%= render 'reviews/favorite_button', review: review, place: place %>
                 <% if place.photo_url %>
                     <img src="<%= place.photo_url %>" alt="<%= place.name %>" class="mx-auto w-80 h-80 my-1 mt-6">
@@ -30,6 +30,6 @@
         </div>
         <%= render 'shared/pagination', collection: @my_reviews %>
     </div>
-    <% else %>
-    <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold text-sky-800 mt-8">レビューが存在しません</p>
+<% else %>
+    <p class="text-center text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold mt-8">レビューが存在しません</p>
 <% end %>
