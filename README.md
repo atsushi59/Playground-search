@@ -41,7 +41,7 @@
 ■機能候補  
 MVPリリース時に実装したいもの  
 ・Geolocation API、Geocoding APIを使用して位置情報（住所）を取得  
-・GPT-4 APIを使用して選択ボタンからの検索結果を表示  
+・GPT-4o APIを使用して選択ボタンからの検索結果を表示  
 ・Directions API、NAVITIME Route(totalnavi)APIを使用しユーザーが選択した時間内に行ける場所のみ表示する   
 ・Places APIを用いて名前、住所、営業時間、公式HPの表示且つDirections API、NAVITIME Route(totalnavi)APIから取得した所要時間の表示  
 ・検索結果からGoogle Mapsに移動し、ナビゲーションまたは乗換案内ページを表示する  
@@ -63,7 +63,7 @@ MVPリリース時に実装したいもの
 ・Google Maps JavaScript API  
 ・Google Places API  
 ・Google Directions API   
-・GPT-4 API  
+・GPT-4o API  
 ・NAVITIME Route(totalnavi)  
 
 ■画面遷移図  

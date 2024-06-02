@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_31_132619) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_02_134516) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,7 +84,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_132619) do
     t.string "opening_hours"
     t.string "photo_url"
     t.string "activity_type"
-    t.text "free_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_places_on_user_id"

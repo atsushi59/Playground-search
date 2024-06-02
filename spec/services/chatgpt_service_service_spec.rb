@@ -16,7 +16,7 @@ RSpec.describe ChatgptService, type: :service do
           'Content-Type' => 'application/json'
         },
         body: {
-          model: 'gpt-4-turbo-preview',
+          model: 'gpt-4o',
           messages:
         }.to_json
       )
