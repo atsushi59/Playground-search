@@ -24,7 +24,7 @@ class ChatgptService
         'Authorization' => "Bearer #{@api_key}"
       },
       body: {
-        model: 'gpt-4-turbo-preview',
+        model: 'gpt-4o',
         messages:
       }.to_json
     }
