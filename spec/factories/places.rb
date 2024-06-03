@@ -9,6 +9,5 @@ FactoryBot.define do
     opening_hours { '9:00 - 17:00' }
     photo_url { 'https://example.com/photo.jpg' }
     activity_type { '公園' }
-    free_text { 'プレイス' }
   end
 end

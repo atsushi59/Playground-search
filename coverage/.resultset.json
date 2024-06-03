@@ -75,7 +75,6 @@
           null,
           null,
           null,
-          null,
           3,
           null,
           null,
@@ -750,7 +749,6 @@
           71,
           71,
           31,
-          71,
           null,
           null
         ]
@@ -884,7 +882,7 @@
           null,
           null,
           1,
-          22,
+          0,
           null,
           null,
           1,
@@ -1003,11 +1001,17 @@
           null,
           null,
           null,
+          null,
+          1,
+          22,
+          null,
           null
         ]
       },
       "/myapp/spec/support/controller_macros.rb": {
         "lines": [
+          null,
+          null,
           1,
           1,
           0,
@@ -1021,6 +1025,7 @@
       },
       "/myapp/spec/support/devise.rb": {
         "lines": [
+          null,
           null,
           1,
           1,
@@ -1241,6 +1246,15 @@
           5,
           13,
           null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
           null,
           null,
           1,
@@ -1611,6 +1625,8 @@
       },
       "/myapp/spec/controllers/place_favorites_controller_spec.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           1,
@@ -1814,7 +1830,6 @@
           3,
           3,
           3,
-          3,
           null,
           null,
           1,
@@ -1930,7 +1945,6 @@
           1,
           1,
           1,
-          null,
           null,
           null,
           null,
@@ -2340,6 +2354,7 @@
           9,
           9,
           9,
+          9,
           null,
           null,
           1,
@@ -2443,6 +2458,8 @@
           1,
           null,
           1,
+          5,
+          null,
           5,
           null,
           5,
@@ -2552,7 +2569,6 @@
           1,
           null,
           1,
-          null,
           1,
           1,
           3,
@@ -2700,6 +2716,8 @@
       "/myapp/spec/controllers/users/passwords_controller_spec.rb": {
         "lines": [
           null,
+          null,
+          null,
           1,
           null,
           1,
@@ -2735,6 +2753,8 @@
       },
       "/myapp/spec/controllers/users/registrations_controller_spec.rb": {
         "lines": [
+          null,
+          null,
           null,
           1,
           null,
@@ -2775,6 +2795,8 @@
       },
       "/myapp/spec/controllers/users/sessions_controller_spec.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           1,
@@ -2875,10 +2897,6 @@
           1,
           null,
           1,
-          null,
-          1,
-          3,
-          null,
           null
         ]
       },
@@ -3528,6 +3546,6 @@
         ]
       }
     },
-    "timestamp": 1716957386
+    "timestamp": 1717377923
   }
 }
