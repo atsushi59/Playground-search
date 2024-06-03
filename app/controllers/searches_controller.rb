@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
 
   def search
     return unless check_address
-    
+
     chatgpt_service = ChatgptService.new(ENV['OPEN_AI_API_KEY'])
 
     setup_session
