@@ -24,4 +24,31 @@ module ApplicationHelper
   def unchecked_notifications
     current_user.notifications_as_visited.where(read: false)
   end
+
+  def default_meta_tags
+    {
+      site: 'あそびばさがそ',
+      title: 'AIを使用した検索、ルート案内サービス',
+      reverse: true,
+      charset: 'utf-8',
+      description: 'あそびばさがそを使えば、子供の遊べる場所を簡単に検索し、ルート案内します',
+      keywords: '検索,ルート,子供,生成AI',
+      canonical: request.original_url,
+      separator: '|',
+      og: {
+        site_name: 'site',
+        title: 'title',
+        description: 'description',
+        type: 'website',
+        url: request.original_url,
+        image: image_url('ogp.png'),
+        locale: 'ja_JP',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@ツイッターのアカウント名',
+        image: image_url('ogp.png'),
+      }
+    }
+  end
 end

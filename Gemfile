@@ -16,6 +16,7 @@ gem 'omniauth-line'
 gem 'omniauth-rails_csrf_protection'
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 gem 'ransack', '3.2.1'
+gem 'meta-tags'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
