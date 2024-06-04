@@ -47,7 +47,8 @@ module ApplicationHelper
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@ツイッターのアカウント名',
+        site: 'あそびばさがそ',
+        title: 'AIを使用した検索、ルート案内サービス',
         image: image_url('ogp.png'),
       }
     }
