@@ -41,13 +41,13 @@ module ApplicationHelper
         description: 'あそびばさがそを使えば、子供の遊べる場所を簡単に検索し、ルート案内します',
         type: 'website',
         url: request.original_url,
-        image: image_url('ogp.png'),
+        image: image_url('ogp.png') + "?#{Time.now.to_i}",
         locale: 'ja_JP'
       },
       twitter: {
         card: 'summary_large_image',
         site: '@',
-        image: image_url('ogp1.png'),
+        image: image_url('ogp.png') + "?#{Time.now.to_i}",
       }
     }
   end
