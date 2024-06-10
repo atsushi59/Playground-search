@@ -36,13 +36,13 @@ module ApplicationHelper
       canonical: request.original_url,
       separator: '|',
       og: {
-        site: 'あそびばさがそ',
-        title: 'AIを使用した検索、ルート案内サービス',
-        description: 'あそびばさがそを使えば、子供の遊べる場所を簡単に検索し、ルート案内します',
+        site_name: :site,
+        title: :title,
+        description: :description,
         type: 'website',
         url: request.original_url,
         image: image_url('ogp.png'),
-        locale: 'ja_JP'
+        local: 'ja-JP'
       },
       twitter: {
         card: 'summary_large_image',
