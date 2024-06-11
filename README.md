@@ -88,7 +88,7 @@ https://where-do-you-take-your-kids.onrender.com
 | 認証           | Devise, Omniauth |
 | API            | Google Geolocation API / Google Geocoding API / Google Maps JavaScript API / Google Places API / Google Directions API / GPT-4o API / NAVITIME Route(totalnavi) API |
 | 環境構築       | Docker |
-| CI/CD          | GitHub Actions |
+| CI/CD          | GitHub |
 | インフラ       | Render / Amazon S3 |
 | その他         | CarrierWave / Letter Opener Web |  
 
