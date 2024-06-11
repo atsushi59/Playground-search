@@ -83,7 +83,7 @@ test:
 production:
   <<: *default
   host: <%= ENV["RENDER_DB_HOSTNAME"] %>
-  database: where_do_you_take_your_kids
-  username: where_do_you_take_your_kids_user
+  database: playground_search_q0p7
+  username: playground_search_q0p7_user
   password: <%= ENV["RENDER_DB_PASSWORD"] %>
   
